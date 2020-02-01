@@ -13,7 +13,7 @@ public class Belt : MonoBehaviour
     public float _initOffset;
 
     //Containers
-    private GameObject[] _pieces;
+    private Piece[] _pieces;
 
     //References
     private Level _level;
@@ -24,7 +24,7 @@ public class Belt : MonoBehaviour
         _level = GameObject.FindGameObjectsWithTag("LevelManager")[0].GetComponent<Level>();
 
         //Initialize data structures
-        _pieces = new GameObject[3];
+        _pieces = new Piece[3];
 
         //Pick the first 3 pieces.
         for(int i=0; i < nPiecesPerBelt; i++)
@@ -49,7 +49,7 @@ public class Belt : MonoBehaviour
         Debug.Log("Collision between Belt and border");
         if(collision.gameObject.CompareTag("BeltBorder"))        //Si el elemento con el que colisiona es el tope. (por si acaso)
         {
-            GameObject tempPiece;
+            Piece tempPiece;
 
             for (int i = 0; i < nPiecesPerBelt; i++)
             {

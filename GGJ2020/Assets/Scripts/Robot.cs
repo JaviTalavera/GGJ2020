@@ -13,13 +13,13 @@ public class Robot : MonoBehaviour
                                         //There can (and surely will) be needed both of them --> 00011.
 
     //Container
-    private GameObject[] _pieces;        //Stores the characteristics of the pieces the robot will need in order to be repaired.
+    private Piece[] _pieces;        //Stores the characteristics of the pieces the robot will need in order to be repaired.
     private int[] _piecesTypes;
     
     //Reference to a generic piece
     [SerializeField] public GameObject _piecePrefab;
 
-    private void Start()
+    public void Intialize()
     {
         //Start data structures 
         _piecesTypes = new int[5];
@@ -31,23 +31,24 @@ public class Robot : MonoBehaviour
         //      First, as the container of the characteristics the neeeded piece must have to repair the robot. (Stored in the robot)
         //      Second, as the piece that fits in the robot. It will be added to the game data structure (queue); and will appear 
         //      in any moment in the belt. (Stored in the Level queue)
-        _pieces = new GameObject[_numPieces];
+        _pieces = new Piece[_numPieces];
 
 
         //Set pieces' type. (Caution, you must ensure the pieces aren't for the same body part.)
         _piecesTypes = GenerateTypes(_numPieces);
 
-        for (int i=0; i < _numPieces; i++)
+        for (int i = 0; i < _numPieces; i++)
         {
-            if (Instantiate(_piecePrefab).TryGetComponent<Piece>(out Piece pieza))
+            if (Instantiate(_piecePrefab).TryGetComponent(out Piece pieza))
             {
                 pieza.Initialize(_piecesTypes[i]);
+                _pieces[i] = pieza;
             }
         }
     }
 
     //Getters and Setters
-    public GameObject[] GetPieces()
+    public Piece[] GetPieces()
     {
         return _pieces;
     }
