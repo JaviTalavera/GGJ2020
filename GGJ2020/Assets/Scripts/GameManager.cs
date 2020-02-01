@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     static int _NCOLORS = 5;
     static Color []_colors = { Color.red, Color.green, Color.blue, Color.white, Color.black};
 
+    //PieceTypes
     public enum pieceType { ARM_L, ARM_R, LEG_L, LEG_R, HEAD};
 
 

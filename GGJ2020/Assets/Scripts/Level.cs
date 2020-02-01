@@ -24,7 +24,7 @@ public class Level : MonoBehaviour
         {
             GameObject r = Instantiate(_robotPrefab);
             _robots.Enqueue(r);                                             //Enter the robot to the data structure.
-            foreach (GameObject piece in r.GetComponent<Robot>()._pieces)   
+            foreach (GameObject piece in r.GetComponent<Robot>().GetPieces())   
             {
                 _pieces.Enqueue(piece);                                     //Add the robot's pieces to the data structure.
             }

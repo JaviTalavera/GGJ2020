@@ -5,7 +5,7 @@ using UnityEngine;
 public class Belt : MonoBehaviour
 {
     //Belt properties
-    public static float _speed;
+    public float _speed;
     const int nPiecesPerBelt = 3;
 
     //Pieces variables
@@ -13,14 +13,16 @@ public class Belt : MonoBehaviour
     public float _initOffset;
 
     //Containers
-    public GameObject[] _spawners;
-    public GameObject[] _pieces;
+    private GameObject[] _pieces;
 
     //References
-    public Level _level;
+    private Level _level;
 
     private void Start()
     {
+        //Find level reference
+        _level = GameObject.FindGameObjectsWithTag("LevelManager")[0].GetComponent<Level>();
+
         //Initialize data structures
         _pieces = new GameObject[3];
 
@@ -44,6 +46,7 @@ public class Belt : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Collision between Belt and border");
         if (collision.tag == "BeltBorder")      //Si el elemento con el que colisiona es el tope. (por si acaso)
         {
             GameObject tempPiece;

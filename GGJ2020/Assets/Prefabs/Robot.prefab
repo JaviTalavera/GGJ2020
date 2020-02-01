@@ -125,7 +125,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c1650460e8bc04fa1c82a3cf98e846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numPieces: 0
-  _pieces: []
   _piecePrefab: {fileID: 7419386875423320692, guid: 0298295135ddbc74aaa58b66b99087f2,
     type: 3}

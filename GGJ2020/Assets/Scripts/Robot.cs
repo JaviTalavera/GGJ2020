@@ -13,7 +13,7 @@ public class Robot : MonoBehaviour
                                         //There can (and surely will) be needed both of them --> 00011.
 
     //Container
-    public GameObject[] _pieces;        //Stores the characteristics of the pieces the robot will need in order to be repaired.
+    private GameObject[] _pieces;        //Stores the characteristics of the pieces the robot will need in order to be repaired.
     private int[] _piecesTypes = new int[5];
     
     //Reference to a generic piece
