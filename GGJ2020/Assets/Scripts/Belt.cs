@@ -24,15 +24,17 @@ public class Belt : MonoBehaviour
         //Find level reference
         //_level = GameObject.FindGameObjectsWithTag("LevelManager")[0].GetComponent<Level>();
 
-        //Initialize data structures
-        _pieces = new Piece[3];
+    }
 
     public void Initialize()
     {
+        //Initialize data structures
+        _pieces = new Piece[3];
+
         //Pick the first 3 pieces.
         for (int i = 0; i < nPiecesPerBelt; i++)
         {
-            Piece p = _level.GetComponent<Level>().GetPiecesQueue().Dequeue<Piece>();
+            Piece p = _level.GetComponent<Level>().GetPiecesQueue().Dequeue();
             _pieces[i] = p;
             _pieces[i].transform.position = _initPos.position + new Vector3(0, 0, _initOffset * i); //Set initial pos.
                                                                                                    
@@ -58,7 +60,7 @@ public class Belt : MonoBehaviour
 
     public void Refresh() //Llamado desde el trigger
     {
-        GameObject tempPiece;
+        Piece tempPiece;
 
         for (int i = 0; i < nPiecesPerBelt; i++)
         {

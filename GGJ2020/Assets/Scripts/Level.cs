@@ -34,7 +34,7 @@ public class Level : MonoBehaviour
         for(int i = 0; i<_NRobots;i++)
         {
             var r = Instantiate(_robotPrefab).GetComponent<Robot>();
-            r.Intialize();
+            r.Initialize();
             _robots.Enqueue(r.gameObject);                                             //Enter the robot to the data structure.                          //Enter the robot to the data structure.
             foreach (Piece piece in r.GetPieces())   
             {
@@ -89,7 +89,7 @@ public class Level : MonoBehaviour
         
     }
 
-    public Queue<GameObject> GetPiecesQueue()
+    public Queue<Piece> GetPiecesQueue()
     {
         return _pieces;
     }
