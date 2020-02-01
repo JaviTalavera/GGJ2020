@@ -40,7 +40,7 @@ public class Belt : MonoBehaviour
 
     public void Refresh() //Llamado desde el trigger
     {
-        /*Piece tempPiece;
+        Piece tempPiece;
 
         for (int i = 0; i < nPiecesPerBelt; i++)
         {
@@ -61,7 +61,7 @@ public class Belt : MonoBehaviour
         }
 
         //Relocate the belt (and its pieces) to it's initial position 
-        transform.position = _initPos.position;*/
+        transform.position = _initPos.position;
 
         foreach (Piece p in _pieces)
         {

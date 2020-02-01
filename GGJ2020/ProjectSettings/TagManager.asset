@@ -7,6 +7,7 @@ TagManager:
   - LevelManager
   - BeltBorder
   - Belt
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
@@ -43,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Robot
+    uniqueID: 806386377
+    locked: 0
+  - name: Player
+    uniqueID: 3562172977
     locked: 0

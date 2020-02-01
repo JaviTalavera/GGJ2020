@@ -15,7 +15,7 @@ public class Piece : MonoBehaviour
     public pieceType _type;
 
     //Conectors' info
-    private int _numberConectors;
+    public int _numberConectors;
     private int _maxConectors = 3;
     public Color[] _colors;
     
@@ -73,6 +73,8 @@ public class Piece : MonoBehaviour
         {
             transform.GetChild(i + 1).gameObject.SetActive(false);
         }
+
+        this.gameObject.SetActive(false);
     }
 
     //Method to initialize random pieces

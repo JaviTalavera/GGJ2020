@@ -10,7 +10,16 @@ public class Robot : MonoBehaviour
     //Pieces' variables
     private int _numPieces;
     private int _piecesTypeMask;                    //Stores a 1 in the 1st position if the leg_l is needed, 1 in the 2nd if leg_r is needed...
-                                        //There can (and surely will) be needed both of them --> 00011.
+                                                    //There can (and surely will) be needed both of them --> 00011.
+
+    public Transform _arm_l; 
+    public Transform _arm_r;
+    public Transform _leg_l;
+    public Transform _leg_r;
+    public GameObject _conn_arm_l;
+    public GameObject _conn_arm_r;
+    public GameObject _conn_leg_l;
+    public GameObject _conn_leg_r;
 
     //Container
     private Piece[] _pieces;        //Stores the characteristics of the pieces the robot will need in order to be repaired.
@@ -43,8 +52,61 @@ public class Robot : MonoBehaviour
             {
                 pieza.Initialize(_piecesTypes[i]);
                 _pieces[i] = pieza;
+                switch(_pieces[i]._type)
+                {
+                    case Piece.pieceType.arm_l:
+                        {
+                            _arm_l.gameObject.SetActive(false);
+                            PintaConnector(_conn_arm_l, _pieces[i]);
+                            _conn_arm_l.SetActive(true);
+                            break;
+                        }
+                    case Piece.pieceType.arm_r:
+                        {
+                            _arm_r.gameObject.SetActive(false);
+                            PintaConnector(_conn_arm_r, _pieces[i]);
+                            _conn_arm_r.SetActive(true); 
+                            break;
+                        }
+                    case Piece.pieceType.leg_l:
+                        {
+                            _leg_l.gameObject.SetActive(false);
+                            PintaConnector(_conn_leg_l, _pieces[i]);
+                            _conn_leg_l.SetActive(true);
+                            break;
+                        }
+                    case Piece.pieceType.leg_r:
+                        {
+                            _leg_r.gameObject.SetActive(false);
+                            PintaConnector(_conn_leg_r, _pieces[i]);
+                            _conn_leg_r.SetActive(true);
+                            break;
+                        }
+                }
             }
         }
+    }
+
+    public void PintaConnector(GameObject connector, Piece piece)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (i < piece._numberConectors)
+            {
+                if (connector.transform.GetChild(i).TryGetComponent(out SpriteRenderer spriteRenderer))
+                {
+                    spriteRenderer.color = piece._colors[i];      //Asign color to component's spriteRenderer. 
+                                                            //(Must be a sprite. If not, pick the right component; not SpriteRenderer)
+                };
+            }
+            else
+                connector.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    public Rigidbody2D GetHeadRigidBody()
+    {
+        return transform.GetChild(0).GetComponent<Rigidbody2D>();
     }
 
     //Getters and Setters

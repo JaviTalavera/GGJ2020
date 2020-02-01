@@ -12,6 +12,9 @@ public class Level : MonoBehaviour
     //Object containers
     public Queue<Piece> _pieces;
     public Queue<Robot> _robots;
+    public Transform _spawnPoint;
+
+    public HookController[] _hooks;
 
     //Object references to instantiate objects
     public GameObject _robotPrefab;
@@ -31,10 +34,11 @@ public class Level : MonoBehaviour
         //Initialize robots (will initialize its own pieces)
         for(int i = 0; i<_NRobots;i++)
         {
-            if (Instantiate(_robotPrefab).TryGetComponent(out Robot r))
+            if (Instantiate(_robotPrefab, _hooks[i].transform.position, Quaternion.identity).TryGetComponent(out Robot r))
             {
                 r.Initialize();
-                _robots.Enqueue(r);                                          //Enter the robot to the data structure.                          //Enter the robot to the data structure.
+                _hooks[i].SetRobot(r);
+                //_robots.Enqueue(r);                                          //Enter the robot to the data structure.                          //Enter the robot to the data structure.
                 foreach (Piece piece in r.GetPieces())
                 {
                     _pieces.Enqueue(piece);                                     //Add the robot's pieces to the data structure.
@@ -77,14 +81,7 @@ public class Level : MonoBehaviour
         belt1.Initialize(); belt2.Initialize();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Queue<Robot> GetRobotsQueue() => _robots;
 
-    public Queue<Piece> GetPiecesQueue()
-    {
-        return _pieces;
-    }
+    public Queue<Piece> GetPiecesQueue() => _pieces;
 }
