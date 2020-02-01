@@ -1,36 +1,81 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 
-    static int points;
-    static float time = 0;
-    GameObject piece; //No idea what this is
+    public Text _txtCountdown;
+    public Text _txtTimer;
+    public Text _txtMessage;
+    public Text _txtStart;
 
-    //Colors 
-    static int _NCOLORS = 5;
-    static Color []_colors = { Color.red, Color.green, Color.blue, Color.white, Color.black};
+    public enum GameStateEnum { PREGAME, COUNTDOWN, GAME, PAUSE, GAMEOVER }
 
-    //PieceTypes
-    public enum pieceType { ARM_L, ARM_R, LEG_L, LEG_R, HEAD};
+    private TimeSpan _time;
 
+    private double _milliseconds;
+    private readonly double _maxMilliseconds = 3 * 60;
 
-    // Start is called before the first frame update
-    void Start()
+    bool stopClock = false;
+
+    private GameStateEnum _gameState;
+
+    private void Start()
     {
-        
+        InitializeGame();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShowText(string text)
     {
-        time += Time.deltaTime;
+        _txtMessage.enabled = true;
+        _txtMessage.text = text;
+        _txtMessage.GetComponent<Animator>().SetTrigger("show");
     }
 
-    public static Color GetColor()
+    private void Update()
     {
-        return _colors[Random.Range(0, _NCOLORS)];
+        if (_gameState == GameStateEnum.PREGAME)
+        {
+            if (Input.anyKeyDown)
+            {
+                StartCoroutine(StartGame());
+            }
+        }
+        else if (_gameState == GameStateEnum.GAME)
+        {
+            _time = new TimeSpan(0, 0, 0, 0, (int)(_milliseconds * 1000));
+            _txtTimer.text = _time.ToString(@"mm\:ss\.fff");
+
+            if (!stopClock) _milliseconds -= Time.deltaTime;
+        }
+    }
+
+    public void InitializeGame()
+    {
+        _txtCountdown.enabled = false;
+        _gameState = GameStateEnum.PREGAME;
+        _milliseconds = _maxMilliseconds;
+        _time = new TimeSpan(0, 0, 0, 0, (int)(_milliseconds * 1000));
+        _txtTimer.text = _time.ToString(@"mm\:ss\.fff");
+    }
+
+    public IEnumerator StartGame()
+    {
+        _gameState = GameStateEnum.COUNTDOWN;
+        int countdown = 3;
+        _txtMessage.enabled = false;
+        _txtStart.enabled = false;
+        _txtCountdown.enabled = true;
+        _txtCountdown.text = countdown.ToString();
+        yield return new WaitForSeconds(0.75f);
+        _txtCountdown.text = (--countdown).ToString();
+        yield return new WaitForSeconds(0.75f);
+        _txtCountdown.text = (--countdown).ToString();
+        yield return new WaitForSeconds(0.75f);
+        _txtCountdown.enabled = false;
+        ShowText("GO!");
+        _gameState = GameStateEnum.GAME;
     }
 }
