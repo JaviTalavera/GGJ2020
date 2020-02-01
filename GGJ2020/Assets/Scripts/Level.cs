@@ -17,8 +17,13 @@ public class Level : MonoBehaviour
     public GameObject _piecePrefab;
 
     // Start is called before the first frame update. The Awake is called even before Start.
-    void Awake()
+    void Start()
     {
+        
+        //Initialize data structures
+        _pieces = new Queue<GameObject>();
+        _robots = new Queue<GameObject>();
+
         //Initialize robots (will initialize it's own pieces)
         for(int i = 0; i<_NRobots;i++)
         {
@@ -29,7 +34,7 @@ public class Level : MonoBehaviour
                 _pieces.Enqueue(piece);                                     //Add the robot's pieces to the data structure.
             }
         }
-
+        
         //Initialize aditional pieces to add complexity
         for (int i=_pieces.Count; i<_NPieces; i++)
         {
@@ -41,7 +46,7 @@ public class Level : MonoBehaviour
         //Shuffle pieces
 
         //Initialize the belts
-
+        
     }
 
     // Update is called once per frame

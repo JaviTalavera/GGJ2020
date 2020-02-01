@@ -54,7 +54,7 @@ public class Piece : MonoBehaviour
         }
 
         //Initialize conectors data
-        _numberConectors = Random.Range(0,_maxConectors+1);
+        _numberConectors = Random.Range(1,_maxConectors+1);
         _colors = new Color[_numberConectors];
 
         //Instantiate the conectors
@@ -105,7 +105,7 @@ public class Piece : MonoBehaviour
         }
 
         //Initialize conectors data
-        _numberConectors = Random.Range(0, _maxConectors + 1);
+        _numberConectors = Random.Range(1, _maxConectors + 1);
         _colors = new Color[_numberConectors];
 
         //Instantiate the conectors

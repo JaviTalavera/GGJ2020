@@ -14,13 +14,16 @@ public class Robot : MonoBehaviour
 
     //Container
     private GameObject[] _pieces;        //Stores the characteristics of the pieces the robot will need in order to be repaired.
-    private int[] _piecesTypes = new int[5];
+    private int[] _piecesTypes;
     
     //Reference to a generic piece
     [SerializeField] public GameObject _piecePrefab;
 
     private void Start()
     {
+        //Start data structures 
+        _piecesTypes = new int[5];
+
         //Set number of needed pieces
         _numPieces = Random.Range(1, maxPieces);
 
@@ -32,8 +35,7 @@ public class Robot : MonoBehaviour
 
 
         //Set pieces' type. (Caution, you must enure the pieces aren't for the same body part.)
-        _piecesTypeMask = CreateMask(_numPieces);
-        _piecesTypes = TraduceMask(_piecesTypeMask);
+        _piecesTypes = GenerateTypes(_numPieces);
 
         for (int i=0; i < _numPieces; i++)
         {
@@ -79,7 +81,7 @@ public class Robot : MonoBehaviour
             do
             {
                 randNum = Random.Range(0, 5);
-            } while ((1 << randNum & mask) == 0);  //Mientras que el componente ya esté pillao, generar otro.
+            } while ((1 << randNum & mask) == 1);  //Mientras que el componente ya esté pillao, generar otro.
                                                     //Esto es para evitar que se generen dos cabezas. 
                                                     //& es and pero bit a bit.
 
