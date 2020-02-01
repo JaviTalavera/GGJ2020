@@ -19,7 +19,7 @@ public class Robot : MonoBehaviour
     //Reference to a generic piece
     [SerializeField] public GameObject _piecePrefab;
 
-    private void Start()
+    public void Initialize()
     {
         //Start data structures 
         _piecesTypes = new int[5];

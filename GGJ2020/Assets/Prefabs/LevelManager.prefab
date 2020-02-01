@@ -47,3 +47,4 @@ MonoBehaviour:
     type: 3}
   _piecePrefab: {fileID: 7419386875423320692, guid: 0298295135ddbc74aaa58b66b99087f2,
     type: 3}
+  belt1: {fileID: 0}

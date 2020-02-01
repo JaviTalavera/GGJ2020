@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8462472026338785215}
   - component: {fileID: 3875460057008564671}
+  - component: {fileID: 2963239685514324704}
   m_Layer: 0
   m_Name: BeltController
-  m_TagString: Untagged
+  m_TagString: Belt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4451945171398872627}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.8333595, y: 0.6977079, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2.544808, z: 1}
   m_Children:
   - {fileID: 1867922329162243045}
   m_Father: {fileID: 0}
@@ -44,9 +45,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b7c21f393aa0046974e946494cf436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.22
+  _speed: 0.2
   _initPos: {fileID: 0}
   _initOffset: 0
+  _level: {fileID: 0}
+--- !u!65 &2963239685514324704
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4451945171398872627}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: -5.73, y: -4.76, z: 0}
 --- !u!1 &8637375619365185943
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,8 +150,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8637375619365185943}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
+  m_IsTrigger: 0
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.045877263, y: 1, z: 1}
   m_Center: {x: -0.47706205, y: 0, z: 0}

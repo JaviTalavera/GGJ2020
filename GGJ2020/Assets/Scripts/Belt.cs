@@ -7,6 +7,7 @@ public class Belt : MonoBehaviour
     //Belt properties
     public float _speed;
     const int nPiecesPerBelt = 3;
+    public Transform _otherBelt;
 
     //Pieces variables
     public Transform _initPos;
@@ -16,62 +17,62 @@ public class Belt : MonoBehaviour
     private GameObject[] _pieces;
 
     //References
-    private Level _level;
+    public GameObject _level;
 
     private void Start()
     {
         //Find level reference
-        _level = GameObject.FindGameObjectsWithTag("LevelManager")[0].GetComponent<Level>();
+        //_level = GameObject.FindGameObjectsWithTag("LevelManager")[0].GetComponent<Level>();
 
         //Initialize data structures
-        _pieces = new GameObject[3];
+        _pieces = new GameObject[nPiecesPerBelt];
+    }
 
+    public void Initialize()
+    {
         //Pick the first 3 pieces.
-        for(int i=0; i < nPiecesPerBelt; i++)
+        for (int i = 0; i < nPiecesPerBelt; i++)
         {
-            _pieces[i] = _level._pieces.Dequeue();
+            Piece p = _level.GetComponent<Level>().GetPiecesQueue().Dequeue<Piece>();
+            _pieces[i] = p;
             _pieces[i].transform.position = _initPos.position + new Vector3(0, 0, _initOffset * i); //Set initial pos.
-                                                                                                    //CAUTION: I think transform is read only variable. The assignment won't modify 
-                                                                                                    //piece's transform because in fact it's a copy of it. TAKE A LOOK AT IT WHEN DEBUGGING.
+                                                                                                   
             _pieces[i].transform.SetParent(transform);
             _pieces[i].gameObject.SetActive(true);
         }
-        
+
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        transform.position += Vector3.right * _speed;
+        transform.position += Vector3.right * _speed*Time.deltaTime;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    public void Refresh() //Llamado desde el trigger
     {
-        Debug.Log("Collision between Belt and border");
-        if(collision.gameObject.CompareTag("BeltBorder"))        //Si el elemento con el que colisiona es el tope. (por si acaso)
+        GameObject tempPiece;
+
+        for (int i = 0; i < nPiecesPerBelt; i++)
         {
-            GameObject tempPiece;
+            //Hide pieces
+            _pieces[i].gameObject.SetActive(false);
 
-            for (int i = 0; i < nPiecesPerBelt; i++)
-            {
-                //Hide pieces
-                _pieces[i].gameObject.SetActive(false);
+            //Store it into the Level queue (or not)
+            //Yet to be implemented. For the moment all the pieces reentry the queue.
+            _level.GetComponent<Level>().GetPiecesQueue().Enqueue(_pieces[i]);
 
-                //Store it into the Level queue (or not)
-                //Yet to be implemented. For the moment all the pieces reentry the queue.
-                _level._pieces.Enqueue(_pieces[i]);
+            //Pick new piece
+            tempPiece = _pieces[i];
+            _pieces[i] = _level.GetComponent<Level>().GetPiecesQueue().Dequeue();
 
-                //Pick new piece
-                tempPiece = _pieces[i];
-                _pieces[i] = _level._pieces.Dequeue();
-
-                _pieces[i].transform.position = tempPiece.transform.position;       //Locate
-                _pieces[i].transform.SetParent(transform);                          //Link to the parent
-                _pieces[i].gameObject.SetActive(true);                              //Show
-            }
-
-            //Relocate the belt (and its pieces) to it's initial position 
-            transform.position = _initPos.position;
+            _pieces[i].transform.position = tempPiece.transform.position;       //Locate
+            _pieces[i].transform.SetParent(transform);                          //Link to the parent
+            _pieces[i].gameObject.SetActive(true);                              //Show
         }
+
+        //Relocate the belt (and its pieces) to it's initial position 
+        transform.position = _initPos.position;
     }
 }
 
