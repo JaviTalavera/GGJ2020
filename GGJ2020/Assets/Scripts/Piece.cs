@@ -103,12 +103,12 @@ public class Piece : MonoBehaviour
         _aura = Instantiate(_auraPrefab, transform);
         _aura.SetActive(false);
         this.gameObject.SetActive(false);
+        used = false;
     }
 
     //Method to initialize random pieces
     public void Initialize()
     {
-        used = false;
         //Initialize piece type
         Initialize(Random.Range(0, 5));
 
@@ -206,6 +206,7 @@ public class Piece : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Robot>(out Robot r))
         {
+            Debug.Log("robot");
             //Store robot reference
             _mouseOverRobot = r;
 
@@ -230,7 +231,7 @@ public class Piece : MonoBehaviour
                 //Attach piece to robot
                 gameObject.SetActive(false);
                 _shadowPiece.SetActive(false);
-                used = true;
+                _mouseOverRobot.Repair(this);
 
             }
             else
