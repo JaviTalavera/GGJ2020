@@ -35,7 +35,7 @@ public class Belt : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position += Vector3.right * _speed * Time.deltaTime;
+        transform.position += Vector3.right * _speed * Time.fixedDeltaTime;
     }
 
     public void Refresh() //Llamado desde el trigger

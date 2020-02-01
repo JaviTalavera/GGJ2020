@@ -21,7 +21,7 @@ public class Level : MonoBehaviour
     // Start is called before the first frame update. The Awake is called even before Start.
     void Start()
     {
-        Sprite[] sprites = { Resources.Load<Sprite>("Sprites/leg_l"), Resources.Load<Sprite>("Sprites/leg_r"), Resources.Load<Sprite>("Sprites/arm_l"), Resources.Load<Sprite>("Sprites/arm_r"), Resources.Load<Sprite>("Sprites/head") };
+        Sprite[] sprites = { Resources.Load<Sprite>("Sprites/leg_l"), Resources.Load<Sprite>("Sprites/leg_r"), Resources.Load<Sprite>("Sprites/arm_l"), Resources.Load<Sprite>("Sprites/arm_r") };
         SpriteRenderer spriteR;
 
         //Initialize data structures
@@ -68,11 +68,7 @@ public class Level : MonoBehaviour
                 case Piece.pieceType.arm_r:
                     spriteR.sprite = sprites[3];
                     break;
-                case Piece.pieceType.head:
-                    spriteR.sprite = sprites[4];
-                    break;
-                    
-            }
+             }
         }
 
         //Shuffle pieces

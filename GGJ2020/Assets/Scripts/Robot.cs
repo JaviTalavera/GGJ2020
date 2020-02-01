@@ -62,7 +62,7 @@ public class Robot : MonoBehaviour
     public int[] GenerateTypes(int numPieces) 
     {
         int mask = CreateMask(numPieces);
-        int[] types = new int[5];
+        int[] types = new int[4];
         types = TraduceMask(mask);
 
         return types;
@@ -100,10 +100,7 @@ public class Robot : MonoBehaviour
                 case 3:
                     mask += 8;       //01000
                     break;
-                case 4:
-                    mask += 16;      //10000
-                    break;
-            }
+             }
         }
 
         return mask;
