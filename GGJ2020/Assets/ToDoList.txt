@@ -1,5 +1,4 @@
 To do list:
-	- I don't know why but Unity is not able to run the scene. Maybe infinite loops...?
 	- Test the existing code (if you want. There's still not enought content to run the game).
 	- Implement grabbing pieces:
 		- Mouse interaction.

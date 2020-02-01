@@ -44,10 +44,10 @@ public class Belt : MonoBehaviour
         transform.position += Vector3.right * _speed;
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Collision between Belt and border");
-        if (collision.tag == "BeltBorder")      //Si el elemento con el que colisiona es el tope. (por si acaso)
+        if(collision.gameObject.CompareTag("BeltBorder"))        //Si el elemento con el que colisiona es el tope. (por si acaso)
         {
             GameObject tempPiece;
 

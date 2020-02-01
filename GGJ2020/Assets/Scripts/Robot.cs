@@ -34,7 +34,7 @@ public class Robot : MonoBehaviour
         _pieces = new GameObject[_numPieces];
 
 
-        //Set pieces' type. (Caution, you must enure the pieces aren't for the same body part.)
+        //Set pieces' type. (Caution, you must ensure the pieces aren't for the same body part.)
         _piecesTypes = GenerateTypes(_numPieces);
 
         for (int i=0; i < _numPieces; i++)
@@ -122,7 +122,6 @@ public class Robot : MonoBehaviour
             {
                 result[r_index] = i;
                 r_index++;
-                Debug.Log(i);
             }
 
             mask=mask >> 1; //En cada iteración se translada una posición para analizar el siguiente bit.
