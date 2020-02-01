@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Piece : MonoBehaviour
 {
+
     //General Piece information
     public enum pieceType { leg_l, leg_r, arm_l, arm_r, head };
     private Color[] colors = { Color.red, Color.green, Color.blue, Color.white, Color.black };
@@ -34,10 +36,6 @@ public class Piece : MonoBehaviour
         {
             case 0:
                 _type = pieceType.leg_l;
-                if(TryGetComponent<SpriteRenderer>(out SpriteRenderer spriteRenderer))
-                {
-                    //spriteRenderer.sprite =;
-                }
                 break;
 
             case 1:
