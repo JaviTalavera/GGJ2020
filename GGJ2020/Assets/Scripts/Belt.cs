@@ -20,10 +20,10 @@ public class Belt : MonoBehaviour
     //References
     public Level _level;
 
-    private void Start()
+    public void Initialize()
     {      
         //Find level reference
-        //_level = GameObject.FindGameObjectWithTag("LevelManager")?.GetComponent<Level>();
+        _level = GameObject.FindGameObjectWithTag("LevelManager")?.GetComponent<Level>();
 
         //Initialize data structures
         nPiecesPerBelt = Spawners.Length;
@@ -82,6 +82,13 @@ public class Belt : MonoBehaviour
             _pieces[i].gameObject.SetActive(true);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        transform.position = _initPos.position;
+        Refresh();
+    }
+
 }
 
 //Nota:

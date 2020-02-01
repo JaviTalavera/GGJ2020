@@ -16,7 +16,7 @@ public class Level : MonoBehaviour
     //Object references to instantiate objects
     public GameObject _robotPrefab;
     public GameObject _piecePrefab;
-    public GameObject belt1, belt2;
+    public Belt belt1, belt2;
 
     // Start is called before the first frame update. The Awake is called even before Start.
     void Start()
@@ -74,6 +74,7 @@ public class Level : MonoBehaviour
         //Shuffle pieces
 
         //Initialize the belts
+        belt1.Initialize(); belt2.Initialize();
     }
 
     // Update is called once per frame
