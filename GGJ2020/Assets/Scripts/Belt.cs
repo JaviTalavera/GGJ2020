@@ -63,10 +63,10 @@ public class Belt : MonoBehaviour
         //Relocate the belt (and its pieces) to it's initial position 
         transform.position = _initPos.position;*/
 
-        for (int i = 0; i < nPiecesPerBelt; i++)
+        foreach (Piece p in _pieces)
         {
-            _pieces[i].gameObject.SetActive(false);
-            _level.GetPiecesQueue().Enqueue(_pieces[i]);
+            p.gameObject.SetActive(false);
+            _level.GetPiecesQueue().Enqueue(p);
         }
         GetNew();
     }
@@ -83,7 +83,7 @@ public class Belt : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         transform.position = _initPos.position;
         Refresh();
