@@ -8,7 +8,7 @@ public class Piece : MonoBehaviour
 {
 
     //General Piece information
-    public enum pieceType { leg_l, leg_r, arm_l, arm_r, head };
+    public enum pieceType { leg_l, leg_r, arm_l, arm_r};
     private Color[] colors = { Color.red, Color.green, Color.blue, Color.white, Color.black };
 
     //Piece's info
@@ -48,10 +48,6 @@ public class Piece : MonoBehaviour
 
             case 3:
                 _type = pieceType.arm_r;
-                break;
-
-            case 4:
-                _type = pieceType.head;
                 break;
         }
 
