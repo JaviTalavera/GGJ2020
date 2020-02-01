@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Level : MonoBehaviour
 {
@@ -13,7 +11,7 @@ public class Level : MonoBehaviour
 
     //Object containers
     public Queue<Piece> _pieces;
-    public Queue<GameObject> _robots;
+    public Queue<Robot> _robots;
 
     //Object references to instantiate objects
     public GameObject _robotPrefab;
@@ -28,17 +26,19 @@ public class Level : MonoBehaviour
 
         //Initialize data structures
         _pieces = new Queue<Piece>();
-        _robots = new Queue<GameObject>();
+        _robots = new Queue<Robot>();
 
         //Initialize robots (will initialize its own pieces)
         for(int i = 0; i<_NRobots;i++)
         {
-            var r = Instantiate(_robotPrefab).GetComponent<Robot>();
-            r.Initialize();
-            _robots.Enqueue(r.gameObject);                                             //Enter the robot to the data structure.                          //Enter the robot to the data structure.
-            foreach (Piece piece in r.GetPieces())   
+            if (Instantiate(_robotPrefab).TryGetComponent(out Robot r))
             {
-                _pieces.Enqueue(piece);                                     //Add the robot's pieces to the data structure.
+                r.Initialize();
+                _robots.Enqueue(r);                                          //Enter the robot to the data structure.                          //Enter the robot to the data structure.
+                foreach (Piece piece in r.GetPieces())
+                {
+                    _pieces.Enqueue(piece);                                     //Add the robot's pieces to the data structure.
+                }
             }
         }
         
@@ -74,9 +74,6 @@ public class Level : MonoBehaviour
                     
             }
         }
-
-        belt1.GetComponent<Belt>().Initialize();
-        belt2.GetComponent<Belt>().Initialize();
 
         //Shuffle pieces
 

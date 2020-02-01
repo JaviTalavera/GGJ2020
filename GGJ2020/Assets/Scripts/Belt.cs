@@ -17,24 +17,20 @@ public class Belt : MonoBehaviour
     private Piece[] _pieces;
 
     //References
-    public GameObject _level;
+    private Level _level;
 
     private void Start()
     {
         //Find level reference
-        //_level = GameObject.FindGameObjectsWithTag("LevelManager")[0].GetComponent<Level>();
+        _level = GameObject.FindGameObjectWithTag("LevelManager")?.GetComponent<Level>();
 
-    }
-
-    public void Initialize()
-    {
         //Initialize data structures
         _pieces = new Piece[3];
 
         //Pick the first 3 pieces.
         for (int i = 0; i < nPiecesPerBelt; i++)
         {
-            Piece p = _level.GetComponent<Level>().GetPiecesQueue().Dequeue();
+            Piece p = _level.GetPiecesQueue().Dequeue();
             _pieces[i] = p;
             _pieces[i].transform.position = _initPos.position + new Vector3(0, 0, _initOffset * i); //Set initial pos.
                                                                                                    
@@ -46,17 +42,8 @@ public class Belt : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position += Vector3.right * _speed*Time.deltaTime;
+        transform.position += Vector3.right * _speed * Time.deltaTime;
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Collision between Belt and border");
-        if(collision.gameObject.CompareTag("BeltBorder"))        //Si el elemento con el que colisiona es el tope. (por si acaso)
-        {
-            Piece tempPiece;
-}
-}
 
     public void Refresh() //Llamado desde el trigger
     {
@@ -69,11 +56,11 @@ public class Belt : MonoBehaviour
 
             //Store it into the Level queue (or not)
             //Yet to be implemented. For the moment all the pieces reentry the queue.
-            _level.GetComponent<Level>().GetPiecesQueue().Enqueue(_pieces[i]);
+            _level.GetPiecesQueue().Enqueue(_pieces[i]);
 
             //Pick new piece
             tempPiece = _pieces[i];
-            _pieces[i] = _level.GetComponent<Level>().GetPiecesQueue().Dequeue();
+            _pieces[i] = _level.GetPiecesQueue().Dequeue();
 
             _pieces[i].transform.position = tempPiece.transform.position;       //Locate
             _pieces[i].transform.SetParent(transform);                          //Link to the parent

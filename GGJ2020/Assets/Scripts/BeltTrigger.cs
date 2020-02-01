@@ -6,15 +6,15 @@ public class BeltTrigger : MonoBehaviour
 {
     public GameObject initPos;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Belt"))
+        if (this.TryGetComponent<Belt>(out var belt))
         {
-            if (other.TryGetComponent<Belt>(out var belt))
-            {
-                belt.transform.position = new Vector3( belt._otherBelt.transform.position.x - 20, belt.transform.position.y, belt.transform.position.z);
-            }
-            other.gameObject.GetComponent<Belt>().Refresh();
+            belt.transform.position = new Vector3( 
+                belt._otherBelt.transform.position.x - 20, 
+                belt.transform.position.y, 
+                belt.transform.position.z);
+            belt.Refresh();
         }
     }
 
