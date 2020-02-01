@@ -1,0 +1,9 @@
+To do list:
+	- Test the existing code (if you want. There's still not enought content to run the game).
+	- Implement grabbing pieces:
+		- Mouse interaction.
+		- Relationship between piece and belt.
+	
+	- Piece dropping when used in a robot.
+	- Pieces location restoring when failed trying to repair a robot.
+	- Piece shuffle [Level]
