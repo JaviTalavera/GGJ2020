@@ -60,7 +60,7 @@ public class Piece : MonoBehaviour
         //Instantiate the conectors
         for (int i = 0; i < _numberConectors; i++)
         {
-            Instantiate(_conectorPrefab, transform.GetChild(i + 1));        //The i+1 is because the first child in the prefab is the sprite.
+            //Instantiate(_conectorPrefab, transform.GetChild(i + 1));        //The i+1 is because the first child in the prefab is the sprite.
             _colors[i] = colors[Random.Range(0, colors.Length)];            //Pick random color.
             if (transform.GetChild(i + 1).TryGetComponent<SpriteRenderer>(out SpriteRenderer spriteRenderer))
             {
@@ -111,7 +111,7 @@ public class Piece : MonoBehaviour
         //Instantiate the conectors
         for (int i = 0; i < _numberConectors; i++)
         {
-            Instantiate(_conectorPrefab, transform.GetChild(i + 1));        //The i+1 is because the first child in the prefab is the sprite.
+            //Instantiate(_conectorPrefab, transform.GetChild(i + 1));        //The i+1 is because the first child in the prefab is the sprite.
             _colors[i] = colors[Random.Range(0, colors.Length)];            //Pick random color.
             if (transform.GetChild(i + 1).TryGetComponent<SpriteRenderer>(out SpriteRenderer spriteRenderer))
             {
