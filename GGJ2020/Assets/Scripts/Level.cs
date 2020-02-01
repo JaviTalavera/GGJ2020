@@ -7,7 +7,7 @@ public class Level : MonoBehaviour
 
     //Level parameters
     private int _NPieces = 10;
-    private int _NRobots = 3;
+    private int _NRobots = 4;
 
     //Object containers
     public Queue<Piece> _pieces;
@@ -34,11 +34,16 @@ public class Level : MonoBehaviour
         //Initialize robots (will initialize its own pieces)
         for(int i = 0; i<_NRobots;i++)
         {
-            if (Instantiate(_robotPrefab, _hooks[i].transform.position, Quaternion.identity).TryGetComponent(out Robot r))
+            if (Instantiate(_robotPrefab, i < _hooks.Length ? _hooks[i].transform.position : _spawnPoint.position, Quaternion.identity).TryGetComponent(out Robot r))
             {
                 r.Initialize();
-                _hooks[i].SetRobot(r);
-                //_robots.Enqueue(r);                                          //Enter the robot to the data structure.                          //Enter the robot to the data structure.
+                if (i < _hooks.Length)
+                    _hooks[i].SetRobot(r);
+                else
+                {
+                    _robots.Enqueue(r);
+                    r.gameObject.SetActive(false);
+                }                                        //Enter the robot to the data structure.                          //Enter the robot to the data structure.
                 foreach (Piece piece in r.GetPieces())
                 {
                     _pieces.Enqueue(piece);                                     //Add the robot's pieces to the data structure.

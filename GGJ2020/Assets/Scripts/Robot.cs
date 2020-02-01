@@ -20,6 +20,10 @@ public class Robot : MonoBehaviour
     public GameObject _conn_arm_r;
     public GameObject _conn_leg_l;
     public GameObject _conn_leg_r;
+    public ParticleSystem _part_arm_l;
+    public ParticleSystem _part_arm_r;
+    public ParticleSystem _part_leg_l;
+    public ParticleSystem _part_leg_r;
 
     //Container
     private Piece[] _pieces;        //Stores the characteristics of the pieces the robot will need in order to be repaired.
@@ -59,13 +63,15 @@ public class Robot : MonoBehaviour
                             _arm_l.gameObject.SetActive(false);
                             PintaConnector(_conn_arm_l, _pieces[i]);
                             _conn_arm_l.SetActive(true);
+                            _part_arm_l.gameObject.SetActive(true);
                             break;
                         }
                     case Piece.pieceType.arm_r:
                         {
                             _arm_r.gameObject.SetActive(false);
                             PintaConnector(_conn_arm_r, _pieces[i]);
-                            _conn_arm_r.SetActive(true); 
+                            _conn_arm_r.SetActive(true);
+                            _part_arm_r.gameObject.SetActive(true);
                             break;
                         }
                     case Piece.pieceType.leg_l:
@@ -73,6 +79,7 @@ public class Robot : MonoBehaviour
                             _leg_l.gameObject.SetActive(false);
                             PintaConnector(_conn_leg_l, _pieces[i]);
                             _conn_leg_l.SetActive(true);
+                            _part_leg_l.gameObject.SetActive(true);
                             break;
                         }
                     case Piece.pieceType.leg_r:
@@ -80,6 +87,7 @@ public class Robot : MonoBehaviour
                             _leg_r.gameObject.SetActive(false);
                             PintaConnector(_conn_leg_r, _pieces[i]);
                             _conn_leg_r.SetActive(true);
+                            _part_leg_r.gameObject.SetActive(true);
                             break;
                         }
                 }
@@ -106,7 +114,7 @@ public class Robot : MonoBehaviour
 
     public Rigidbody2D GetHeadRigidBody()
     {
-        return transform.GetChild(0).GetComponent<Rigidbody2D>();
+        return transform.GetComponent<Rigidbody2D>();
     }
 
     //Getters and Setters
