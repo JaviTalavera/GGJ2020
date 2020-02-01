@@ -197,4 +197,58 @@ public class Robot : MonoBehaviour
 
         return result;
     }
+
+    //Piece check methods
+    public bool checkCorrectPiece(Piece piece)
+    {
+        for(int i = 0; i< _numPieces; i++)
+        {
+            if (_pieces[i] == piece)
+            {
+                transform.GetChild(i+2).gameObject.SetActive(true);
+                for(int j = 0;j<piece.GetNConectors(); j++)
+                {
+                    transform.GetChild(1).transform.GetChild(j).gameObject.SetActive(false);
+                }
+                return true;
+            }
+        }
+ 
+        return false;
+    }
+
+    public void Repair(Piece p)
+    {
+        switch(p._type)
+        {
+            case Piece.pieceType.arm_l:
+                {
+                    _arm_l.gameObject.SetActive(true);
+                    _part_arm_l.Stop();
+                    _conn_arm_l.SetActive(false);
+                    break;
+                }
+            case Piece.pieceType.arm_r:
+                {
+                    _arm_r.gameObject.SetActive(true);
+                    _part_arm_r.Stop();
+                    _conn_arm_r.SetActive(false);
+                    break;
+                }
+            case Piece.pieceType.leg_r:
+                {
+                    _leg_r.gameObject.SetActive(true);
+                    _part_leg_r.Stop();
+                    _conn_leg_r.SetActive(false);
+                    break;
+                }
+            case Piece.pieceType.leg_l:
+                {
+                    _leg_l.gameObject.SetActive(true);
+                    _part_leg_l.Stop();
+                    _conn_leg_l.SetActive(false);
+                    break;
+                }
+        }
+    }
 }

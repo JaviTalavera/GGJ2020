@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Belt : MonoBehaviour
@@ -27,10 +28,10 @@ public class Belt : MonoBehaviour
 
         //Initialize data structures
         nPiecesPerBelt = Spawners.Length;
-        _pieces = new Piece[nPiecesPerBelt];
+        _pieces = new Piece[0];
 
         //Pick the first 3 pieces.
-        GetNew();
+        // GetNew();
     }
 
     void FixedUpdate()
@@ -40,7 +41,7 @@ public class Belt : MonoBehaviour
 
     public void Refresh() //Llamado desde el trigger
     {
-        Piece tempPiece;
+        /*Piece tempPiece;
 
         for (int i = 0; i < nPiecesPerBelt; i++)
         {
@@ -61,32 +62,45 @@ public class Belt : MonoBehaviour
         }
 
         //Relocate the belt (and its pieces) to it's initial position 
-        transform.position = _initPos.position;
+        transform.position = _initPos.position;*/
 
-        foreach (Piece p in _pieces)
+        if (_pieces.Any())
         {
-            p.gameObject.SetActive(false);
-            _level.GetPiecesQueue().Enqueue(p);
+            foreach (Piece p in _pieces)
+            {
+                //if (p.hasBeenUsed())
+                {
+                    p.gameObject.SetActive(false);
+                    _level.GetPiecesQueue().Enqueue(p);
+                }
+            }
         }
         GetNew();
     }
 
     public void GetNew()
     {
+        _pieces = new Piece[nPiecesPerBelt];
         for (int i = 0; i < nPiecesPerBelt; i++)
         {
             _pieces[i] = _level.GetPiecesQueue().Dequeue(); //ERROR DE EJECUCION
-            _pieces[i].gameObject.SetActive(true);
             _pieces[i].gameObject.transform.position = Spawners[i].transform.position;
             _pieces[i].transform.SetParent(Spawners[i].transform);
-            _pieces[i].gameObject.SetActive(true);
+            _pieces[i].gameObject.SetActive(true); 
+            if (_pieces[i].TryGetComponent<Piece>(out Piece piece))
+            {
+                piece.SetShadowPieceActive(false);
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        transform.position = _initPos.position;
-        Refresh();
+        if (other.gameObject.CompareTag("BeltBorder"))
+        {
+            transform.position = _initPos.position;
+            Refresh();
+        }
     }
 
 }

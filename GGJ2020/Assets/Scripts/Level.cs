@@ -24,8 +24,7 @@ public class Level : MonoBehaviour
     // Start is called before the first frame update. The Awake is called even before Start.
     void Start()
     {
-        Sprite[] sprites = { Resources.Load<Sprite>("Sprites/leg_l"), Resources.Load<Sprite>("Sprites/leg_r"), Resources.Load<Sprite>("Sprites/arm_l"), Resources.Load<Sprite>("Sprites/arm_r") };
-        SpriteRenderer spriteR;
+        GameObject[] sprites = { Resources.Load<GameObject>("Leg_l"), Resources.Load<GameObject>("Leg_r"), Resources.Load<GameObject>("Arm_l"), Resources.Load<GameObject>("Arm_r") };
 
         //Initialize data structures
         _pieces = new Queue<Piece>();
@@ -62,20 +61,24 @@ public class Level : MonoBehaviour
 
         foreach(Piece p in _pieces)
         {
-            spriteR = p.transform.GetChild(0).GetComponent<SpriteRenderer>();
+            //spriteR = p.transform.GetChild(0).GetComponent<SpriteRenderer>();
             switch (p.GetComponent<Piece>()._type)
             {
                 case Piece.pieceType.leg_l:
-                    spriteR.sprite = sprites[0];
+                    var go_legl = Instantiate(sprites[0], 3 * Vector3.up + Vector3.left, sprites[0].transform.rotation);
+                    go_legl.transform.SetParent(p.transform);
                     break;
                 case Piece.pieceType.leg_r:
-                    spriteR.sprite = sprites[1];
+                    var go_legr = Instantiate(sprites[1], 3 * Vector3.up + Vector3.left, sprites[0].transform.rotation);
+                    go_legr.transform.SetParent(p.transform);
                     break;
                 case Piece.pieceType.arm_l:
-                    spriteR.sprite = sprites[2];
+                    var go_arml = Instantiate(sprites[2], 3 * Vector3.up + Vector3.left, sprites[0].transform.rotation);
+                    go_arml.transform.SetParent(p.transform);
                     break;
                 case Piece.pieceType.arm_r:
-                    spriteR.sprite = sprites[3];
+                    var go_armr = Instantiate(sprites[3], 3 * Vector3.up + Vector3.left, sprites[0].transform.rotation);
+                    go_armr.transform.SetParent(p.transform);
                     break;
              }
         }
@@ -87,6 +90,7 @@ public class Level : MonoBehaviour
     }
 
     public Queue<Robot> GetRobotsQueue() => _robots;
+
 
     public Queue<Piece> GetPiecesQueue() => _pieces;
 }
