@@ -6,7 +6,7 @@ public class Belt : MonoBehaviour
 {
     //Belt properties
     public float _speed;
-    const int nPiecesPerBelt = 3;
+    int nPiecesPerBelt = 3;
     public Transform _otherBelt;
 
     //Pieces variables
@@ -15,29 +15,22 @@ public class Belt : MonoBehaviour
 
     //Containers
     private Piece[] _pieces;
+    public GameObject [] Spawners;
 
     //References
-    private Level _level;
+    public Level _level;
 
     private void Start()
-    {
+    {      
         //Find level reference
-        _level = GameObject.FindGameObjectWithTag("LevelManager")?.GetComponent<Level>();
+        //_level = GameObject.FindGameObjectWithTag("LevelManager")?.GetComponent<Level>();
 
         //Initialize data structures
-        _pieces = new Piece[3];
+        nPiecesPerBelt = Spawners.Length;
+        _pieces = new Piece[nPiecesPerBelt];
 
         //Pick the first 3 pieces.
-        for (int i = 0; i < nPiecesPerBelt; i++)
-        {
-            Piece p = _level.GetPiecesQueue().Dequeue();
-            _pieces[i] = p;
-            _pieces[i].transform.position = _initPos.position + new Vector3(0, 0, _initOffset * i); //Set initial pos.
-                                                                                                   
-            _pieces[i].transform.SetParent(transform);
-            _pieces[i].gameObject.SetActive(true);
-        }
-
+        GetNew();
     }
 
     void FixedUpdate()
@@ -47,7 +40,7 @@ public class Belt : MonoBehaviour
 
     public void Refresh() //Llamado desde el trigger
     {
-        Piece tempPiece;
+        /*Piece tempPiece;
 
         for (int i = 0; i < nPiecesPerBelt; i++)
         {
@@ -68,7 +61,26 @@ public class Belt : MonoBehaviour
         }
 
         //Relocate the belt (and its pieces) to it's initial position 
-        transform.position = _initPos.position;
+        transform.position = _initPos.position;*/
+
+        for (int i = 0; i < nPiecesPerBelt; i++)
+        {
+            _pieces[i].gameObject.SetActive(false);
+            _level.GetPiecesQueue().Enqueue(_pieces[i]);
+        }
+        GetNew();
+    }
+
+    public void GetNew()
+    {
+        for (int i = 0; i < nPiecesPerBelt; i++)
+        {
+            _pieces[i] = _level.GetPiecesQueue().Dequeue(); //ERROR DE EJECUCION
+            _pieces[i].gameObject.SetActive(true);
+            _pieces[i].gameObject.transform.position = Spawners[i].transform.position;
+            _pieces[i].transform.SetParent(Spawners[i].transform);
+            _pieces[i].gameObject.SetActive(true);
+        }
     }
 }
 
