@@ -133,11 +133,18 @@ public class Robot : MonoBehaviour
     /*
      *  Encapsulates createMask and traduceMask to simplify the understanding in main code.
      */
-    public int[] GenerateTypes(int numPieces) 
+    public int[] GenerateTypes(int numPieces)
     {
-        int mask = CreateMask(numPieces);
-        int[] types = new int[4];
-        types = TraduceMask(mask);
+        int[] types = new int[numPieces];
+        for (int i = 0; i < numPieces; i++)
+        {
+            int randNum;
+            do
+            {
+                randNum = Random.Range(0, 4);
+            } while (types.Contains(randNum));
+            types[i] = randNum;
+        }
 
         return types;
     }
@@ -155,7 +162,7 @@ public class Robot : MonoBehaviour
 
             do
             {
-                randNum = Random.Range(0, 5);
+                randNum = Random.Range(0, 4);
             } while ((1 << randNum & mask) == 1);  //Mientras que el componente ya esté pillao, generar otro.
                                                     //Esto es para evitar que se generen dos cabezas. 
                                                     //& es and pero bit a bit.
@@ -190,7 +197,7 @@ public class Robot : MonoBehaviour
 
         for(int i = 0; i < 8; i++)
         {
-            if(mask%2 == 1)  //Si el último bit es 1...
+            if(mask % 2 == 1)  //Si el último bit es 1...
             {
                 result[r_index] = i;
                 r_index++;

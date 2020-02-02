@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -122,6 +123,8 @@ public class GameManager : MonoBehaviour
         _gameState = GameStateEnum.GAME;
         GameObject.FindWithTag("LevelManager").GetComponent<Level>()?.Initialize();
     }
+
+    public void LoadScene(string scene) => SceneManager.LoadScene(scene);
 
     public void Quit() => Application.Quit();
 }

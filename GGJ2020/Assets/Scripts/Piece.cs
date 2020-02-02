@@ -85,7 +85,7 @@ public class Piece : MonoBehaviour
     public void Initialize()
     {
         //Initialize piece type
-        Initialize(Random.Range(0, 5));
+        Initialize(Random.Range(0, 4));
 
     }
 

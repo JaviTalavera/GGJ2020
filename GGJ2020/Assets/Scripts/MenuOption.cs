@@ -9,6 +9,7 @@ public class MenuOption : MonoBehaviour
     public GameObject credits;
     public float force;
     public int id; //1. Jugar 2. Musica 3. Creditos 4. Salir
+    public AudioSource _audioSource;
 
     private void OnMouseDown()
     {
@@ -19,6 +20,7 @@ public class MenuOption : MonoBehaviour
         if(id==2)
         {
             //Musica ===> Julen, te toca a ti!
+            _audioSource.mute = !_audioSource.mute;
         }
 
         if (id ==3)
