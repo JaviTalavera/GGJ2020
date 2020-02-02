@@ -289,7 +289,7 @@ public class Robot : MonoBehaviour
         _repairedPieces++;
         if (IsRepaired())
         {
-            Debug.Log("REPARADO");
+            GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(2);
             GameObject.FindWithTag("LevelManager").GetComponent<Level>().RobotRepaired();
             heart.Play();
         }

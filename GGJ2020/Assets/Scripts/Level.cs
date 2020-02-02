@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Level : MonoBehaviour
@@ -31,10 +32,10 @@ public class Level : MonoBehaviour
         _hooks[1]._started = false;
         _hooks[2].transform.position = new Vector3(-28f, 3.96f, 0);
         _hooks[2]._started = false;
-        var robots = GameObject.FindWithTag("Robot");
-        Destroy(robots);
-        var pieces = GameObject.FindWithTag("Piece");
-        Destroy(pieces);
+        var robots = GameObject.FindGameObjectsWithTag("Robot");
+        foreach (var r in robots) Destroy(r);
+        var pieces = GameObject.FindGameObjectsWithTag("Piece");
+        foreach (var p in pieces) Destroy(p);
     }
 
     // Start is called before the first frame update. The Awake is called even before Start.

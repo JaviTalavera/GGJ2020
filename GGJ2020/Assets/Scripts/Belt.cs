@@ -12,6 +12,7 @@ public class Belt : MonoBehaviour
     public float speedUp = 1;
     int nPiecesPerBelt = 3;
     public Transform _otherBelt;
+    public ParticleSystem _FUEGOOOOO;
 
     //Pieces variables
     public Transform _initPos;
@@ -21,6 +22,8 @@ public class Belt : MonoBehaviour
     private Piece[] _pieces;
     public GameObject [] Spawners;
     public bool _generatePieces = false;
+
+    public bool _aceleracion = false;
 
     //References
     public Level _level;
@@ -42,8 +45,22 @@ public class Belt : MonoBehaviour
     {
         if (_generatePieces && !GameManager.IsPause)
             transform.position += Vector3.right * _speed * speedUp * Time.fixedDeltaTime;
-        if(Input.GetKey(accelerate)) speedUp = 2;
-        else speedUp = 1;
+    }
+
+    private void LateUpdate()
+    {
+        if (Input.GetKeyDown(accelerate))
+        {
+            _aceleracion = true;
+            _FUEGOOOOO.Play(); 
+            speedUp = 2;
+        }
+        else if (Input.GetKeyUp(accelerate))
+        {
+            _aceleracion = false;
+            _FUEGOOOOO.Stop();
+            speedUp = 1;
+        }
     }
 
     public void Refresh() //Llamado desde el trigger

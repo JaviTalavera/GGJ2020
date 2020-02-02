@@ -11,6 +11,7 @@ TagManager:
   - Robot
   - Particulas
   - Piece
+  - Audio
   layers:
   - Default
   - TransparentFX
