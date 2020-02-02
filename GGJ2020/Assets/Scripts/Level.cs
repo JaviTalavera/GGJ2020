@@ -24,7 +24,7 @@ public class Level : MonoBehaviour
     // Start is called before the first frame update. The Awake is called even before Start.
     public void Initialize()
     {
-        GameObject[] sprites = { Resources.Load<GameObject>("Leg_l"), Resources.Load<GameObject>("Leg_r"), Resources.Load<GameObject>("Arm_l"), Resources.Load<GameObject>("Arm_r") };
+        GameObject[] sprites = { Resources.Load<GameObject>("Leg_l2"), Resources.Load<GameObject>("Leg_r2"), Resources.Load<GameObject>("Arm_l2"), Resources.Load<GameObject>("Arm_r2") };
 
         //Initialize data structures
         _pieces = new Queue<Piece>();
@@ -68,19 +68,19 @@ public class Level : MonoBehaviour
             switch (p.GetComponent<Piece>()._type)
             {
                 case Piece.pieceType.leg_l:
-                    var go_legl = Instantiate(sprites[0], 3 * Vector3.up + Vector3.left, sprites[0].transform.rotation);
+                    var go_legl = Instantiate(sprites[0], Vector3.zero, sprites[0].transform.rotation);
                     go_legl.transform.SetParent(p.transform);
                     break;
                 case Piece.pieceType.leg_r:
-                    var go_legr = Instantiate(sprites[1], 3 * Vector3.up + Vector3.left, sprites[0].transform.rotation);
+                    var go_legr = Instantiate(sprites[1], Vector3.zero, sprites[0].transform.rotation);
                     go_legr.transform.SetParent(p.transform);
                     break;
                 case Piece.pieceType.arm_l:
-                    var go_arml = Instantiate(sprites[2], 3 * Vector3.up + Vector3.left, sprites[0].transform.rotation);
+                    var go_arml = Instantiate(sprites[2], Vector3.zero, sprites[0].transform.rotation);
                     go_arml.transform.SetParent(p.transform);
                     break;
                 case Piece.pieceType.arm_r:
-                    var go_armr = Instantiate(sprites[3], 3 * Vector3.up + Vector3.left, sprites[0].transform.rotation);
+                    var go_armr = Instantiate(sprites[3], Vector3.zero, sprites[0].transform.rotation);
                     go_armr.transform.SetParent(p.transform);
                     break;
              }
