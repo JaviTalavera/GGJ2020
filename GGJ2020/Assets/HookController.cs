@@ -6,6 +6,9 @@ public class HookController : MonoBehaviour
     private Level _level;
     private Robot _robot;
     public float _speed;
+
+    private bool _started = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,9 +16,15 @@ public class HookController : MonoBehaviour
         _level = GameObject.FindWithTag("LevelManager").GetComponent<Level>();
     }
 
+    public void Initialize()
+    {
+        this._started = true;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (_started)
         transform.position += Vector3.right * _speed * Time.fixedDeltaTime;
     }
 
@@ -32,7 +41,8 @@ public class HookController : MonoBehaviour
     {
         if (_robot)
         {
-            _level.GetRobotsQueue().Enqueue(_robot);
+            if (!_robot.IsRepaired())
+                _level.GetRobotsQueue().Enqueue(_robot);
             _robot.gameObject.SetActive(false);
             _robot = null;
         }

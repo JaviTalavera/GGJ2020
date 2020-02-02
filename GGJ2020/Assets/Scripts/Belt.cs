@@ -17,6 +17,7 @@ public class Belt : MonoBehaviour
     //Containers
     private Piece[] _pieces;
     public GameObject [] Spawners;
+    private bool _generatePieces = false;
 
     //References
     public Level _level;
@@ -30,13 +31,14 @@ public class Belt : MonoBehaviour
         nPiecesPerBelt = Spawners.Length;
         _pieces = new Piece[0];
 
-        //Pick the first 3 pieces.
-        // GetNew();
+        _generatePieces = true;
+        GetComponentInParent<Animator>().SetTrigger("start");
     }
 
     void FixedUpdate()
     {
-        transform.position += Vector3.right * _speed * Time.fixedDeltaTime;
+        if (_generatePieces)
+            transform.position += Vector3.right * _speed * Time.fixedDeltaTime;
     }
 
     public void Refresh() //Llamado desde el trigger
@@ -45,7 +47,7 @@ public class Belt : MonoBehaviour
         {
             foreach (Piece p in _pieces)
             {
-                if (p != null)
+                if (p != null && p.transform.parent != null)
                 {
                     p.gameObject.SetActive(false);
                     if (!p.HasBeenUsed())
