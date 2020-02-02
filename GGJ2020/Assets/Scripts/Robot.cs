@@ -27,6 +27,8 @@ public class Robot : MonoBehaviour
     public ParticleSystem _part_leg_r;
     public ParticleSystem heart;
 
+    public Color[] _robotColors;
+
     private int _repairedPieces = 0;
 
     //Container
@@ -35,6 +37,18 @@ public class Robot : MonoBehaviour
     
     //Reference to a generic piece
     [SerializeField] public GameObject _piecePrefab;
+
+    public void PintarRobot(Transform t, Color c)
+    {
+        if(t.TryGetComponent(out SpriteRenderer sr))
+        {
+            sr.color = c;
+        }
+        for(int i =0; i < t.childCount; i++)
+        {
+            PintarRobot(t.GetChild(i).transform, c);
+        }
+    }
 
     public void Initialize()
     {
@@ -50,6 +64,7 @@ public class Robot : MonoBehaviour
         //      in any moment in the belt. (Stored in the Level queue)
         _pieces = new Piece[_numPieces];
 
+        //PintarRobot(transform, _robotColors[Random.Range(0, _robotColors.Length)]);
 
         //Set pieces' type. (Caution, you must ensure the pieces aren't for the same body part.)
         _piecesTypes = GenerateTypes(_numPieces);
