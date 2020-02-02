@@ -121,7 +121,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.022000631, y: -0.04699993}
+  m_ConnectedAnchor: {x: -0.021999976, y: -0.04699993}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -267,7 +267,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.083999634, y: -0.23200004}
+  m_ConnectedAnchor: {x: 0.084000014, y: -0.23200004}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -413,7 +413,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.022000631, y: -0.027000109}
+  m_ConnectedAnchor: {x: 0.021999976, y: -0.02699995}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -559,7 +559,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.083999634, y: -0.23200004}
+  m_ConnectedAnchor: {x: 0.084000014, y: -0.23200004}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -868,7 +868,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.1999995, y: -0.5979999}
+  m_ConnectedAnchor: {x: -0.2, y: -0.598}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1031,7 +1031,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0.21200006}
+  m_ConnectedAnchor: {x: 0, y: 0.21200013}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1322,7 +1322,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.27200064, y: -0.08600012}
+  m_ConnectedAnchor: {x: 0.272, y: -0.085999966}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1469,7 +1469,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.1999995, y: -0.603}
+  m_ConnectedAnchor: {x: 0.2, y: -0.6029999}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1616,7 +1616,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.27200064, y: -0.08600012}
+  m_ConnectedAnchor: {x: -0.272, y: -0.085999966}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1677,7 +1677,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.02999878, y: 0.0029999416}
+  m_ConnectedAnchor: {x: 0.029999992, y: 0.003000021}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1738,7 +1738,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.061999004, y: 0.009999911}
+  m_ConnectedAnchor: {x: -0.062000018, y: 0.00999999}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2777,6 +2777,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4376361658064992502, guid: e016c4b7b3f8245c299127186ceedd1d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4430884282097351510, guid: e016c4b7b3f8245c299127186ceedd1d,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -2872,6 +2877,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8203686300862487374, guid: e016c4b7b3f8245c299127186ceedd1d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e016c4b7b3f8245c299127186ceedd1d, type: 3}
 --- !u!4 &2436458603301492018 stripped
@@ -2902,6 +2912,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376361658064992502, guid: e016c4b7b3f8245c299127186ceedd1d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4430884282097351510, guid: e016c4b7b3f8245c299127186ceedd1d,
         type: 3}
@@ -2997,6 +3012,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8203686300862487374, guid: e016c4b7b3f8245c299127186ceedd1d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e016c4b7b3f8245c299127186ceedd1d, type: 3}

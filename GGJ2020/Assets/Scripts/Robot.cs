@@ -205,11 +205,6 @@ public class Robot : MonoBehaviour
         {
             if (_pieces[i] == piece)
             {
-                transform.GetChild(i+2).gameObject.SetActive(true);
-                for(int j = 0;j<piece.GetNConectors(); j++)
-                {
-                    transform.GetChild(1).transform.GetChild(j).gameObject.SetActive(false);
-                }
                 return true;
             }
         }
@@ -225,6 +220,7 @@ public class Robot : MonoBehaviour
                 {
                     _arm_l.gameObject.SetActive(true);
                     _part_arm_l.Stop();
+                    _part_arm_l.gameObject.SetActive(false);
                     _conn_arm_l.SetActive(false);
                     break;
                 }
@@ -232,6 +228,7 @@ public class Robot : MonoBehaviour
                 {
                     _arm_r.gameObject.SetActive(true);
                     _part_arm_r.Stop();
+                    _part_arm_r.gameObject.SetActive(false);
                     _conn_arm_r.SetActive(false);
                     break;
                 }
@@ -239,6 +236,7 @@ public class Robot : MonoBehaviour
                 {
                     _leg_r.gameObject.SetActive(true);
                     _part_leg_r.Stop();
+                    _part_leg_r.gameObject.SetActive(false);
                     _conn_leg_r.SetActive(false);
                     break;
                 }
@@ -246,6 +244,7 @@ public class Robot : MonoBehaviour
                 {
                     _leg_l.gameObject.SetActive(true);
                     _part_leg_l.Stop();
+                    _part_leg_l.gameObject.SetActive(false);
                     _conn_leg_l.SetActive(false);
                     break;
                 }

@@ -38,7 +38,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6724373999469563792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -133,8 +133,6 @@ MonoBehaviour:
   _numberConectors: 0
   _colors: []
   _conectorPrefab: {fileID: 2931503188607846214, guid: 9c5c5802fe866e6478414c375b432b56,
-    type: 3}
-  _shadowPiecePrefab: {fileID: 3977152340666783579, guid: 4a46ffa7fe9f847d4bbc6d202e6f7886,
     type: 3}
   _auraPrefab: {fileID: 8017131259014961426, guid: 2c3f597dedbf840819d8babdfbd6f879,
     type: 3}
