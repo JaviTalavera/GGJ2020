@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Transform _panelGameOver;
     public Transform _panelVictory;
     public Transform _panelGame;
+    public Transform _panelControles;
 
     public static bool IsPause = false;
 
@@ -124,15 +125,18 @@ public class GameManager : MonoBehaviour
         _milliseconds = _maxMilliseconds;
         _time = new TimeSpan(0, 0, 0, 0, (int)(_milliseconds * 1000));
         _txtTimer.text = _time.ToString(@"mm\:ss\.fff");
-        _panelGame.gameObject.SetActive(true);
         Time.timeScale = 1;
+        _panelControles.gameObject.SetActive(true);
         _panelPause.gameObject.SetActive(false);
         _panelGameOver.gameObject.SetActive(false);
         _panelVictory.gameObject.SetActive(false);
+        _panelGame.gameObject.SetActive(false);
     }
 
     public IEnumerator StartGame()
     {
+        _panelControles.gameObject.SetActive(false);
+        _panelGame.gameObject.SetActive(true);
         _gameState = GameStateEnum.COUNTDOWN;
         int countdown = 3;
         _txtMessage.enabled = false;

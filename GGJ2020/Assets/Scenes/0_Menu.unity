@@ -566,12 +566,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: d9d1d4a0a1d6b4298b1e791c9d6ec025, type: 3}
     m_FontSize: 105
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 174
+    m_MaxSize: 105
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1445,6 +1445,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2142b4c1b7794287b7fbe59454d5583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &935775192
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2320259775080663169, guid: 34c3ba733c4d0884ea92cd7a8d012e55,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1012.2096
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320259775080663169, guid: 34c3ba733c4d0884ea92cd7a8d012e55,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 347.4087
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320259775080663169, guid: 34c3ba733c4d0884ea92cd7a8d012e55,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -63.063656
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320259775080663169, guid: 34c3ba733c4d0884ea92cd7a8d012e55,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320259775080663169, guid: 34c3ba733c4d0884ea92cd7a8d012e55,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320259775080663169, guid: 34c3ba733c4d0884ea92cd7a8d012e55,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320259775080663169, guid: 34c3ba733c4d0884ea92cd7a8d012e55,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320259775080663169, guid: 34c3ba733c4d0884ea92cd7a8d012e55,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320259775080663169, guid: 34c3ba733c4d0884ea92cd7a8d012e55,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320259775080663169, guid: 34c3ba733c4d0884ea92cd7a8d012e55,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320259775080663169, guid: 34c3ba733c4d0884ea92cd7a8d012e55,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320259775080663171, guid: 34c3ba733c4d0884ea92cd7a8d012e55,
+        type: 3}
+      propertyPath: m_Name
+      value: Cursor
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 34c3ba733c4d0884ea92cd7a8d012e55, type: 3}
 --- !u!1001 &961247312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1576,12 +1645,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: d9d1d4a0a1d6b4298b1e791c9d6ec025, type: 3}
     m_FontSize: 105
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 174
+    m_MaxSize: 105
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1809,12 +1878,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: d9d1d4a0a1d6b4298b1e791c9d6ec025, type: 3}
     m_FontSize: 105
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 174
+    m_MaxSize: 105
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1994,12 +2063,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: d9d1d4a0a1d6b4298b1e791c9d6ec025, type: 3}
     m_FontSize: 105
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 174
+    m_MaxSize: 105
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
