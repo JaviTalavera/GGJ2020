@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Robot : MonoBehaviour
@@ -24,6 +25,8 @@ public class Robot : MonoBehaviour
     public ParticleSystem _part_arm_r;
     public ParticleSystem _part_leg_l;
     public ParticleSystem _part_leg_r;
+
+    private int _repairedPieces = 0;
 
     //Container
     private Piece[] _pieces;        //Stores the characteristics of the pieces the robot will need in order to be repaired.
@@ -212,13 +215,18 @@ public class Robot : MonoBehaviour
         return false;
     }
 
+    public bool IsRepaired() => _pieces.Length == _repairedPieces;
+
     public void Repair(Piece p)
     {
-        switch(p._type)
+        var particulas = GameObject.FindWithTag("Particulas").GetComponent<ParticleSystem>();
+        switch (p._type)
         {
             case Piece.pieceType.arm_l:
                 {
                     _arm_l.gameObject.SetActive(true);
+                    particulas.transform.position = _arm_l.position;
+                    particulas.Play();
                     _part_arm_l.Stop();
                     _part_arm_l.gameObject.SetActive(false);
                     _conn_arm_l.SetActive(false);
@@ -227,6 +235,8 @@ public class Robot : MonoBehaviour
             case Piece.pieceType.arm_r:
                 {
                     _arm_r.gameObject.SetActive(true);
+                    particulas.transform.position = _arm_r.position;
+                    particulas.Play();
                     _part_arm_r.Stop();
                     _part_arm_r.gameObject.SetActive(false);
                     _conn_arm_r.SetActive(false);
@@ -235,6 +245,8 @@ public class Robot : MonoBehaviour
             case Piece.pieceType.leg_r:
                 {
                     _leg_r.gameObject.SetActive(true);
+                    particulas.transform.position = _leg_r.position;
+                    particulas.Play();
                     _part_leg_r.Stop();
                     _part_leg_r.gameObject.SetActive(false);
                     _conn_leg_r.SetActive(false);
@@ -243,11 +255,23 @@ public class Robot : MonoBehaviour
             case Piece.pieceType.leg_l:
                 {
                     _leg_l.gameObject.SetActive(true);
+                    particulas.transform.position = _leg_l.position;
+                    particulas.Play();
                     _part_leg_l.Stop();
                     _part_leg_l.gameObject.SetActive(false);
                     _conn_leg_l.SetActive(false);
                     break;
                 }
+        }
+        _repairedPieces++;
+        if (IsRepaired())
+        {
+            Debug.Log("REPARADO");
+            GameObject.FindWithTag("LevelManager").GetComponent<Level>().RobotRepaired();
+        }
+        else
+        {
+            Debug.Log(_repairedPieces + "/" + _pieces.Length);
         }
     }
 }

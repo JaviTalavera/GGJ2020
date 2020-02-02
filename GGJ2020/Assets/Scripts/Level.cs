@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    
-
     //Level parameters
     private int _NPieces = 10;
     private int _NRobots = 4;
@@ -21,8 +19,10 @@ public class Level : MonoBehaviour
     public GameObject _piecePrefab;
     public Belt belt1, belt2;
 
+    private int _robotsRepaired = 0;
+
     // Start is called before the first frame update. The Awake is called even before Start.
-    void Start()
+    public void Initialize()
     {
         GameObject[] sprites = { Resources.Load<GameObject>("Leg_l"), Resources.Load<GameObject>("Leg_r"), Resources.Load<GameObject>("Arm_l"), Resources.Load<GameObject>("Arm_r") };
 
@@ -37,7 +37,10 @@ public class Level : MonoBehaviour
             {
                 r.Initialize();
                 if (i < _hooks.Length)
+                {
+                    _hooks[i].Initialize();
                     _hooks[i].SetRobot(r);
+                }
                 else
                 {
                     _robots.Enqueue(r);
@@ -87,6 +90,17 @@ public class Level : MonoBehaviour
 
         //Initialize the belts
         belt1.Initialize(); belt2.Initialize();
+    }
+
+    public void RobotRepaired()
+    {
+        if (++_robotsRepaired == _NRobots)
+        {
+            if (GameObject.Find("GameManager").TryGetComponent<GameManager>(out GameManager gm))
+            {
+                gm.EndGame();
+            }
+        }
     }
 
     public Queue<Robot> GetRobotsQueue() => _robots;

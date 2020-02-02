@@ -10,8 +10,14 @@ public class GameManager : MonoBehaviour
     public Text _txtTimer;
     public Text _txtMessage;
     public Text _txtStart;
+    public Text _txtResult;
 
-    public enum GameStateEnum { PREGAME, COUNTDOWN, GAME, PAUSE, GAMEOVER }
+    public Transform _panelPause;
+    public Transform _panelGameOver;
+    public Transform _panelVictory;
+    public Transform _panelGame;
+
+    public enum GameStateEnum { PREGAME, COUNTDOWN, GAME, POSGAME, PAUSE, GAMEOVER }
 
     private TimeSpan _time;
 
@@ -36,6 +42,24 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (_gameState == GameStateEnum.PAUSE)
+            {
+                Time.timeScale = 1;
+                _gameState = GameStateEnum.GAME;
+                _panelPause.gameObject.SetActive(false);
+                _panelGame.gameObject.SetActive(true);
+            }
+
+            else if (_gameState == GameStateEnum.GAME)
+            {
+                Time.timeScale = 0;
+                _gameState = GameStateEnum.PAUSE;
+                _panelPause.gameObject.SetActive(true);
+                _panelGame.gameObject.SetActive(false);
+            }
+        }
         if (_gameState == GameStateEnum.PREGAME)
         {
             if (Input.anyKeyDown)
@@ -49,7 +73,26 @@ public class GameManager : MonoBehaviour
             _txtTimer.text = _time.ToString(@"mm\:ss\.fff");
 
             if (!stopClock) _milliseconds -= Time.deltaTime;
+            if (_milliseconds <= 0)
+            {
+                _milliseconds = 0;
+                _gameState = GameStateEnum.GAMEOVER;
+                Time.timeScale = 0;
+                _panelGameOver.gameObject.SetActive(true);
+                _panelGame.gameObject.SetActive(false);
+            }
         }
+    }
+
+    public void EndGame()
+    {
+        _gameState = GameStateEnum.POSGAME;
+        Time.timeScale = 0;
+        var time = _maxMilliseconds - _milliseconds;
+        _time = new TimeSpan(0, 0, 0, 0, (int)(time * 1000));
+        _txtResult.text = _time.ToString(@"mm\:ss\.fff");
+        _panelVictory.gameObject.SetActive(true);
+        _panelGame.gameObject.SetActive(false);
     }
 
     public void InitializeGame()
@@ -77,5 +120,8 @@ public class GameManager : MonoBehaviour
         _txtCountdown.enabled = false;
         ShowText("GO!");
         _gameState = GameStateEnum.GAME;
+        GameObject.FindWithTag("LevelManager").GetComponent<Level>()?.Initialize();
     }
+
+    public void Quit() => Application.Quit();
 }

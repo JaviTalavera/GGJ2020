@@ -9,6 +9,7 @@ TagManager:
   - Belt
   - SpawnPoint
   - Robot
+  - Particulas
   layers:
   - Default
   - TransparentFX
@@ -51,4 +52,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3562172977
+    locked: 0
+  - name: UI
+    uniqueID: 3725613541
     locked: 0
