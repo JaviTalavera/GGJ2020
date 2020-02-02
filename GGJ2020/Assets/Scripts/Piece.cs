@@ -118,6 +118,7 @@ public class Piece : MonoBehaviour
     //Mouse interaction
     public void OnMouseOver()
     {
+        if (GameManager.IsPause) return;
         _aura.transform.position = new Vector3(
                 _aura.transform.position.x,
                 _aura.transform.position.y,
@@ -128,11 +129,13 @@ public class Piece : MonoBehaviour
 
     public void OnMouseExit()
     {
+        if (GameManager.IsPause) return;
         _aura.SetActive(false);
     }
 
     public void OnMouseDown()
     {
+        if (GameManager.IsPause) return;
         //Remove the parent link
         transform.SetParent(null);
         clicked = true;
@@ -141,6 +144,7 @@ public class Piece : MonoBehaviour
 
     public void OnMouseDrag()
     {
+        if (GameManager.IsPause) return;
         if (clicked)
         {
             //Drag

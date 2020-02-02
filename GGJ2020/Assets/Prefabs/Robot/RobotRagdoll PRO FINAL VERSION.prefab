@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 913141132130154114}
   m_Layer: 8
   m_Name: leg_l
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 913141132950139388}
   m_Layer: 8
   m_Name: r_arm
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 913141133633060528}
   m_Layer: 8
   m_Name: r_body
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -619,7 +619,7 @@ GameObject:
   - component: {fileID: 913141134006532027}
   m_Layer: 8
   m_Name: leg_r
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -766,7 +766,7 @@ GameObject:
   - component: {fileID: 913141134013928694}
   m_Layer: 8
   m_Name: arm_l
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 913141134060869526}
   m_Layer: 8
   m_Name: arm_r
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1060,7 +1060,7 @@ GameObject:
   - component: {fileID: 1782367209331415691}
   m_Layer: 8
   m_Name: r_arm
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1206,7 +1206,7 @@ GameObject:
   - component: {fileID: 1782367209607364557}
   m_Layer: 8
   m_Name: Robot_1_3
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1353,7 +1353,7 @@ GameObject:
   - component: {fileID: 1782367210463888023}
   m_Layer: 8
   m_Name: Robot_1_3 (1)
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2640,7 +2640,7 @@ PrefabInstance:
     - target: {fileID: 4376361658064992502, guid: e016c4b7b3f8245c299127186ceedd1d,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Robot
       objectReference: {fileID: 0}
     - target: {fileID: 4430884282097351510, guid: e016c4b7b3f8245c299127186ceedd1d,
         type: 3}
@@ -2752,7 +2752,7 @@ PrefabInstance:
     - target: {fileID: 8203686300862487374, guid: e016c4b7b3f8245c299127186ceedd1d,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Robot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e016c4b7b3f8245c299127186ceedd1d, type: 3}
@@ -2788,7 +2788,7 @@ PrefabInstance:
     - target: {fileID: 4376361658064992502, guid: e016c4b7b3f8245c299127186ceedd1d,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Robot
       objectReference: {fileID: 0}
     - target: {fileID: 4430884282097351510, guid: e016c4b7b3f8245c299127186ceedd1d,
         type: 3}
@@ -2900,7 +2900,7 @@ PrefabInstance:
     - target: {fileID: 8203686300862487374, guid: e016c4b7b3f8245c299127186ceedd1d,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Robot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e016c4b7b3f8245c299127186ceedd1d, type: 3}

@@ -10,6 +10,7 @@ TagManager:
   - SpawnPoint
   - Robot
   - Particulas
+  - Piece
   layers:
   - Default
   - TransparentFX

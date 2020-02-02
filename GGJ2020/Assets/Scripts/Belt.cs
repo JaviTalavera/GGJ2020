@@ -20,7 +20,7 @@ public class Belt : MonoBehaviour
     //Containers
     private Piece[] _pieces;
     public GameObject [] Spawners;
-    private bool _generatePieces = false;
+    public bool _generatePieces = false;
 
     //References
     public Level _level;
@@ -40,7 +40,7 @@ public class Belt : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_generatePieces)
+        if (_generatePieces && !GameManager.IsPause)
             transform.position += Vector3.right * _speed * speedUp * Time.fixedDeltaTime;
         if(Input.GetKey(accelerate)) speedUp = 2;
         else speedUp = 1;

@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public Transform _panelVictory;
     public Transform _panelGame;
 
+    public static bool IsPause = false;
+
     public enum GameStateEnum { PREGAME, COUNTDOWN, GAME, POSGAME, PAUSE, GAMEOVER }
 
     private TimeSpan _time;
@@ -28,10 +30,12 @@ public class GameManager : MonoBehaviour
     bool stopClock = false;
 
     private GameStateEnum _gameState;
+    public bool _mainGame = false;
 
     private void Start()
     {
-        InitializeGame();
+        if (_mainGame)
+            InitializeGame();
     }
 
     public void ShowText(string text)
@@ -41,24 +45,38 @@ public class GameManager : MonoBehaviour
         _txtMessage.GetComponent<Animator>().SetTrigger("show");
     }
 
+    public void Pause(bool pause)
+    {
+        if (pause)
+        {
+            Time.timeScale = 0;
+            _gameState = GameStateEnum.PAUSE;
+            GameManager.IsPause = true;
+            _panelPause.gameObject.SetActive(true);
+            _panelGame.gameObject.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            _gameState = GameStateEnum.GAME;
+            GameManager.IsPause = false;
+            _panelPause.gameObject.SetActive(false);
+            _panelGame.gameObject.SetActive(true);
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (_gameState == GameStateEnum.PAUSE)
             {
-                Time.timeScale = 1;
-                _gameState = GameStateEnum.GAME;
-                _panelPause.gameObject.SetActive(false);
-                _panelGame.gameObject.SetActive(true);
+                Pause(false);
             }
 
             else if (_gameState == GameStateEnum.GAME)
             {
-                Time.timeScale = 0;
-                _gameState = GameStateEnum.PAUSE;
-                _panelPause.gameObject.SetActive(true);
-                _panelGame.gameObject.SetActive(false);
+                Pause(true);
             }
         }
         if (_gameState == GameStateEnum.PREGAME)
@@ -98,11 +116,17 @@ public class GameManager : MonoBehaviour
 
     public void InitializeGame()
     {
+        _txtStart.enabled = true;
         _txtCountdown.enabled = false;
         _gameState = GameStateEnum.PREGAME;
         _milliseconds = _maxMilliseconds;
         _time = new TimeSpan(0, 0, 0, 0, (int)(_milliseconds * 1000));
         _txtTimer.text = _time.ToString(@"mm\:ss\.fff");
+        _panelGame.gameObject.SetActive(true);
+        Time.timeScale = 1;
+        _panelPause.gameObject.SetActive(false);
+        _panelGameOver.gameObject.SetActive(false);
+        _panelVictory.gameObject.SetActive(false);
     }
 
     public IEnumerator StartGame()

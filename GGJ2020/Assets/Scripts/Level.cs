@@ -4,8 +4,8 @@ using UnityEngine;
 public class Level : MonoBehaviour
 {
     //Level parameters
-    private int _NPieces = 10;
-    private int _NRobots = 4;
+    private int _NPieces = 1;
+    private int _NRobots = 1;
 
     //Object containers
     public Queue<Piece> _pieces;
@@ -21,11 +21,27 @@ public class Level : MonoBehaviour
 
     private int _robotsRepaired = 0;
 
+    public void RestartHook()
+    {
+        belt1._generatePieces = false;
+        belt2._generatePieces = false;
+        _hooks[0].transform.position = new Vector3(-12f, 3.96f, 0);
+        _hooks[0]._started = false;
+        _hooks[1].transform.position = new Vector3(-20f, 3.96f, 0);
+        _hooks[1]._started = false;
+        _hooks[2].transform.position = new Vector3(-28f, 3.96f, 0);
+        _hooks[2]._started = false;
+        var robots = GameObject.FindWithTag("Robot");
+        Destroy(robots);
+        var pieces = GameObject.FindWithTag("Piece");
+        Destroy(pieces);
+    }
+
     // Start is called before the first frame update. The Awake is called even before Start.
     public void Initialize()
     {
-        GameObject[] sprites = { Resources.Load<GameObject>("Leg_l2"), Resources.Load<GameObject>("Leg_r2"), Resources.Load<GameObject>("Arm_l2"), Resources.Load<GameObject>("Arm_r2") };
-
+        _robotsRepaired = 0;
+           GameObject[] sprites = { Resources.Load<GameObject>("Leg_l2"), Resources.Load<GameObject>("Leg_r2"), Resources.Load<GameObject>("Arm_l2"), Resources.Load<GameObject>("Arm_r2") };
         //Initialize data structures
         _pieces = new Queue<Piece>();
         _robots = new Queue<Robot>();
@@ -54,7 +70,7 @@ public class Level : MonoBehaviour
         }
         
         //Initialize aditional pieces to add complexity
-        for (int i=_pieces.Count; i<_NPieces; i++)
+        for (int i =  0; i<_NPieces; i++)
         {
             if (Instantiate(_piecePrefab).TryGetComponent(out Piece p)) {
                 p.Initialize();
@@ -98,6 +114,7 @@ public class Level : MonoBehaviour
         {
             if (GameObject.Find("GameManager").TryGetComponent<GameManager>(out GameManager gm))
             {
+                RestartHook();
                 gm.EndGame();
             }
         }

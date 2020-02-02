@@ -7,7 +7,7 @@ public class HookController : MonoBehaviour
     private Robot _robot;
     public float _speed;
 
-    private bool _started = false;
+    public bool _started = false;
 
     // Start is called before the first frame update
     void Start()
