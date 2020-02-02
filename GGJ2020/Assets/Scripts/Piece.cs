@@ -3,7 +3,7 @@
 
 public class Piece : MonoBehaviour
 {
-
+    public AudioClip _audioError;
     //General Piece information
     public enum pieceType { leg_l, leg_r, arm_l, arm_r };
     private Color[] colors = { Color.red, Color.green, Color.blue, Color.white, Color.black };
@@ -187,6 +187,7 @@ public class Piece : MonoBehaviour
         {
             //Attach piece to robot
             this.used = true;
+            GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(1);
             _mouseOverRobot.Repair(this);
             gameObject.SetActive(false);
 
@@ -195,6 +196,7 @@ public class Piece : MonoBehaviour
         {
             //Lerp the piece to the shadowPiece's transform.position
             this.gameObject.SetActive(false);
+            GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(0);
             GameObject.FindWithTag("LevelManager").GetComponent<Level>()?.GetPiecesQueue().Enqueue(this);
         }
     }

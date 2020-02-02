@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     private TimeSpan _time;
 
     private double _milliseconds;
-    private readonly double _maxMilliseconds = 3 * 60;
+    private readonly double _maxMilliseconds = 1 * 60;
 
     bool stopClock = false;
 
@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
             {
                 _milliseconds = 0;
                 _gameState = GameStateEnum.GAMEOVER;
+                GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(4);
                 Time.timeScale = 0;
                 _panelGameOver.gameObject.SetActive(true);
                 _panelGame.gameObject.SetActive(false);
@@ -105,6 +106,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(3);
         _gameState = GameStateEnum.POSGAME;
         Time.timeScale = 0;
         var time = _maxMilliseconds - _milliseconds;
