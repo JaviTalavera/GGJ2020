@@ -41,37 +41,17 @@ public class Belt : MonoBehaviour
 
     public void Refresh() //Llamado desde el trigger
     {
-        /*Piece tempPiece;
-
-        for (int i = 0; i < nPiecesPerBelt; i++)
-        {
-            //Hide pieces
-            _pieces[i].gameObject.SetActive(false);
-
-            //Store it into the Level queue (or not)
-            //Yet to be implemented. For the moment all the pieces reentry the queue.
-            _level.GetPiecesQueue().Enqueue(_pieces[i]);
-
-            //Pick new piece
-            tempPiece = _pieces[i];
-            _pieces[i] = _level.GetPiecesQueue().Dequeue();
-
-            _pieces[i].transform.position = tempPiece.transform.position;       //Locate
-            _pieces[i].transform.SetParent(transform);                          //Link to the parent
-            _pieces[i].gameObject.SetActive(true);                              //Show
-        }
-
-        //Relocate the belt (and its pieces) to it's initial position 
-        transform.position = _initPos.position;*/
-
         if (_pieces.Any())
         {
             foreach (Piece p in _pieces)
             {
-                //if (p.hasBeenUsed())
+                if (p != null)
                 {
                     p.gameObject.SetActive(false);
-                    _level.GetPiecesQueue().Enqueue(p);
+                    if (!p.HasBeenUsed())
+                    {
+                        _level.GetPiecesQueue().Enqueue(p);
+                    }
                 }
             }
         }
@@ -83,13 +63,12 @@ public class Belt : MonoBehaviour
         _pieces = new Piece[nPiecesPerBelt];
         for (int i = 0; i < nPiecesPerBelt; i++)
         {
-            _pieces[i] = _level.GetPiecesQueue().Dequeue(); //ERROR DE EJECUCION
-            _pieces[i].gameObject.transform.position = Spawners[i].transform.position;
-            _pieces[i].transform.SetParent(Spawners[i].transform);
-            _pieces[i].gameObject.SetActive(true); 
-            if (_pieces[i].TryGetComponent<Piece>(out Piece piece))
+            if (_level.GetPiecesQueue().Any())
             {
-                piece.SetShadowPieceActive(false);
+                _pieces[i] = _level.GetPiecesQueue().Dequeue(); //ERROR DE EJECUCION
+                _pieces[i].gameObject.transform.position = Spawners[i].transform.position;
+                _pieces[i].transform.SetParent(Spawners[i].transform);
+                _pieces[i].gameObject.SetActive(true);
             }
         }
     }

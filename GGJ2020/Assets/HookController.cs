@@ -5,7 +5,7 @@ public class HookController : MonoBehaviour
     private Transform _spawnPoint;
     private Level _level;
     private Robot _robot;
-
+    public float _speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +16,7 @@ public class HookController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position += Vector3.right * 2 * Time.fixedDeltaTime;
+        transform.position += Vector3.right * _speed * Time.fixedDeltaTime;
     }
 
     public void SetRobot(Robot r)
@@ -37,6 +37,7 @@ public class HookController : MonoBehaviour
             _robot = null;
         }
         transform.position = _spawnPoint.position;
-        SetRobot(_level.GetRobotsQueue().Dequeue());
+        if (_level.GetRobotsQueue().Count > 0)
+            SetRobot(_level.GetRobotsQueue().Dequeue());
     }
 }

@@ -18,40 +18,15 @@ public class Piece : MonoBehaviour
 
     //Mouse interaction variables
     private Robot _mouseOverRobot;
-    private GameObject _shadowPiece;
-    private bool restorePosition = false;
     private float _returnTime = 1;
     bool used = true;           //Initialized from robot by deafult    
     private GameObject _aura;
-    bool clickable = true;
+    bool clicked = false;
 
     //References to intantiate objects
     [SerializeField] public GameObject _conectorPrefab;
-    [SerializeField]
-    public GameObject _shadowPiecePrefab;
     [SerializeField] public GameObject _auraPrefab;
 
-    void Start()
-    {
-        //No action is required here.
-    }
-
-    private void Update()
-    {
-        if (restorePosition)
-        {
-            clickable = false;
-            transform.position = Vector3.Lerp(transform.position, _shadowPiece.transform.position, 4f * Time.deltaTime);
-
-            if (Mathf.Abs(Vector3.Magnitude(transform.position - _shadowPiece.transform.position)) < 0.05)
-            {
-                restorePosition = false;
-                transform.position = _shadowPiece.transform.position;
-                Destroy(_shadowPiece.gameObject);
-                clickable = true;
-            }
-        }
-    }
 
     //Method to initialize Robot's pieces
     public void Initialize(int type)
@@ -130,17 +105,12 @@ public class Piece : MonoBehaviour
         return _maxConectors;
     }
 
-    public void SetShadowPieceActive(bool value)
-    {
-        if(_shadowPiece!=null) _shadowPiece.SetActive(value);
-    }
-
-    public bool hasBeenUsed()
+    public bool HasBeenUsed()
     {
         return used;
     }
 
-    public void setUsed(bool value)
+    public void SetUsed(bool value)
     {
         used = value;
     }
@@ -148,14 +118,12 @@ public class Piece : MonoBehaviour
     //Mouse interaction
     public void OnMouseOver()
     {
-        if (!used)
-        {
-            _aura.transform.position = new Vector3(
-                    _aura.transform.position.x,
-                    _aura.transform.position.y,
-                    1f);
+        _aura.transform.position = new Vector3(
+                _aura.transform.position.x,
+                _aura.transform.position.y,
+                1f);
+        if (!clicked)
             _aura.SetActive(true);
-        }
     }
 
     public void OnMouseExit()
@@ -165,33 +133,15 @@ public class Piece : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (clickable)
-        {
-            //Create shadow piece
-            _shadowPiece = Instantiate(_shadowPiecePrefab, transform.parent);
-            if (_shadowPiece.TryGetComponent<ShadowPiece>(out ShadowPiece shPiece))
-            {
-                shPiece.Initialize(this);
-                _shadowPiece.SetActive(true);
-            }
-
-            //Remove the parent link
-            transform.SetParent(null);
-
-            //Put it above all other assets
-            if (TryGetComponent<SpriteRenderer>(out SpriteRenderer pieceSR))
-            {
-                //Not implemented yet!!
-                //pieceSR.orderInLayer...
-            }
-
-            _aura.SetActive(true);
-        }
+        //Remove the parent link
+        transform.SetParent(null);
+        clicked = true;
+        _aura.SetActive(false);
     }
 
     public void OnMouseDrag()
     {
-        if (clickable)
+        if (clicked)
         {
             //Drag
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -206,39 +156,42 @@ public class Piece : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Robot>(out Robot r))
         {
-            Debug.Log("robot");
             //Store robot reference
             _mouseOverRobot = r;
-
-            //Highlight piece (scale it as debug)
             _aura.SetActive(true);
-
+        }
+        else {
+            var rob = collision.gameObject.GetComponentInParent<Robot>();
+            if (rob)
+            {
+                _mouseOverRobot = rob;
+                _aura.SetActive(true);
+            }
         }
     }
 
     public void OnTriggerExit2D(Collider2D other)
     {
         _mouseOverRobot = null;
+        _aura.SetActive(false);
     }
 
     public void OnMouseUp()
     {
-        if (clickable)
+        _aura.SetActive(false);
+        if (_mouseOverRobot != null && _mouseOverRobot.checkCorrectPiece(this))
         {
-            _aura.SetActive(false);
-            if (_mouseOverRobot != null && _mouseOverRobot.checkCorrectPiece(this))
-            {
-                //Attach piece to robot
-                gameObject.SetActive(false);
-                _shadowPiece.SetActive(false);
-                _mouseOverRobot.Repair(this);
+            //Attach piece to robot
+            this.used = true;
+            _mouseOverRobot.Repair(this);
+            gameObject.SetActive(false);
 
-            }
-            else
-            {
-                //Lerp the piece to the shadowPiece's transform.position
-                restorePosition = true;
-            }
+        }
+        else
+        {
+            //Lerp the piece to the shadowPiece's transform.position
+            this.gameObject.SetActive(false);
+            GameObject.FindWithTag("LevelManager").GetComponent<Level>()?.GetPiecesQueue().Enqueue(this);
         }
     }
 
