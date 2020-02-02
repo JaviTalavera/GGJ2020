@@ -25,6 +25,7 @@ public class Robot : MonoBehaviour
     public ParticleSystem _part_arm_r;
     public ParticleSystem _part_leg_l;
     public ParticleSystem _part_leg_r;
+    public ParticleSystem heart;
 
     private int _repairedPieces = 0;
 
@@ -268,6 +269,7 @@ public class Robot : MonoBehaviour
         {
             Debug.Log("REPARADO");
             GameObject.FindWithTag("LevelManager").GetComponent<Level>().RobotRepaired();
+            heart.Play();
         }
         else
         {

@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class Belt : MonoBehaviour
 {
+    public KeyCode accelerate;
+
     //Belt properties
     public float _speed;
+    public float speedUp = 1;
     int nPiecesPerBelt = 3;
     public Transform _otherBelt;
 
@@ -38,7 +41,9 @@ public class Belt : MonoBehaviour
     void FixedUpdate()
     {
         if (_generatePieces)
-            transform.position += Vector3.right * _speed * Time.fixedDeltaTime;
+            transform.position += Vector3.right * _speed * speedUp * Time.fixedDeltaTime;
+        if(Input.GetKey(accelerate)) speedUp = 2;
+        else speedUp = 1;
     }
 
     public void Refresh() //Llamado desde el trigger
