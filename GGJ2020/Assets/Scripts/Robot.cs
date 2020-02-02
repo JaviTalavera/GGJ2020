@@ -216,7 +216,7 @@ public class Robot : MonoBehaviour
         return false;
     }
 
-    public bool IsRepaired() => _pieces.Length == _repairedPieces;
+    public bool IsRepaired() => _pieces.Length <= _repairedPieces;
 
     public void Repair(Piece p)
     {
