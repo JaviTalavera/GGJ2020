@@ -94,15 +94,22 @@ public class GameManager : MonoBehaviour
 
             if (!stopClock) _milliseconds -= Time.deltaTime;
             if (_milliseconds <= 0)
-            {
-                _milliseconds = 0;
-                _gameState = GameStateEnum.GAMEOVER;
-                GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(4);
-                Time.timeScale = 0;
-                _panelGameOver.gameObject.SetActive(true);
-                _panelGame.gameObject.SetActive(false);
-            }
+                GameOver();
         }
+    }
+
+    public void GameOver()
+    {
+        GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(4);
+        _milliseconds = 0;
+        _gameState = GameStateEnum.GAMEOVER;
+        Time.timeScale = 0;
+        var robots = GameObject.FindGameObjectsWithTag("Robot");
+        foreach (var r in robots) Destroy(r);
+        var pieces = GameObject.FindGameObjectsWithTag("Piece");
+        foreach (var p in pieces) Destroy(p);
+        _panelGameOver.gameObject.SetActive(true);
+        _panelGame.gameObject.SetActive(false);
     }
 
     public void EndGame()
@@ -110,6 +117,10 @@ public class GameManager : MonoBehaviour
         GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(3);
         _gameState = GameStateEnum.POSGAME;
         Time.timeScale = 0;
+        var robots = GameObject.FindGameObjectsWithTag("Robot");
+        foreach (var r in robots) Destroy(r);
+        var pieces = GameObject.FindGameObjectsWithTag("Piece");
+        foreach (var p in pieces) Destroy(p);
         var time = _maxMilliseconds - _milliseconds;
         _time = new TimeSpan(0, 0, 0, 0, (int)(time * 1000));
         _txtResult.text = _time.ToString(@"mm\:ss\.fff");
