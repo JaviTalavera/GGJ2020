@@ -53,6 +53,7 @@ public class Level : MonoBehaviour
                 {
                     _hooks[i].Initialize();
                     _hooks[i].SetRobot(r);
+                    //r.SetHook(_hooks[i]);
                 }
                 else
                 {
@@ -74,6 +75,10 @@ public class Level : MonoBehaviour
                 _pieces.Enqueue(p);
             }
         }
+
+        ////////////////////////////////////////////////////////// NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW 
+        ShufflePieces();
+        ////////////////////////////////////////////////////////// NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW 
 
         foreach(Piece p in _pieces)
         {
@@ -119,6 +124,22 @@ public class Level : MonoBehaviour
 
     public Queue<Robot> GetRobotsQueue() => _robots;
 
-
     public Queue<Piece> GetPiecesQueue() => _pieces;
+
+    public void ShufflePieces()
+    {
+        Piece[] pieces = _pieces.ToArray();
+        for (int i = 0; i < pieces.Length; i++)
+        {
+            Piece temp = pieces[i];
+            int randomIndex = Random.Range(i, pieces.Length);
+            pieces[i] = pieces[randomIndex];
+            pieces[randomIndex] = temp;
+        }
+        _pieces.Clear();
+        for (int i = 0; i < pieces.Length; i++)
+        {
+            _pieces.Enqueue(pieces[i]);
+        }
+    }
 }

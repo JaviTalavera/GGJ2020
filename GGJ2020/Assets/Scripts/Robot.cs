@@ -12,7 +12,7 @@ public class Robot : MonoBehaviour
     private int _numPieces;
     private int _piecesTypeMask;                    //Stores a 1 in the 1st position if the leg_l is needed, 1 in the 2nd if leg_r is needed...
                                                     //There can (and surely will) be needed both of them --> 00011.
-
+    public HookController _hook; // NEW NEW NEW NEW NEW
     public Transform _arm_l; 
     public Transform _arm_r;
     public Transform _leg_l;
@@ -141,6 +141,8 @@ public class Robot : MonoBehaviour
     {
         return _pieces;
     }
+
+    public void SetHook(HookController h) => _hook = h;
 
 
     //Functional methods
@@ -292,6 +294,11 @@ public class Robot : MonoBehaviour
             GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(2);
             GameObject.FindWithTag("LevelManager").GetComponent<Level>().RobotRepaired();
             heart.Play();
+
+            //NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW             
+            _hook.gameObject.transform.position += Vector3.up * 100;
+            GetComponent<Rigidbody2D>().AddForce(100 * Vector3.up, ForceMode2D.Impulse);
+            //NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW 
         }
         else
         {

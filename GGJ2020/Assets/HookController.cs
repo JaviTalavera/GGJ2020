@@ -35,6 +35,7 @@ public class HookController : MonoBehaviour
         r.gameObject.SetActive(true);
         var hook = GetComponentInChildren<DistanceJoint2D>();
         hook.connectedBody = r.GetHeadRigidBody();
+        r.SetHook(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
