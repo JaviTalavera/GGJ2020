@@ -5,8 +5,8 @@ using UnityEngine;
 public class Level : MonoBehaviour
 {
     //Level parameters
-    private int _NPieces = 4;
-    private int _NRobots = 6;
+    private int _NPieces = 1;
+    private int _NRobots = 3;
 
     //Object containers
     public Queue<Piece> _pieces;
@@ -116,7 +116,6 @@ public class Level : MonoBehaviour
         {
             if (GameObject.Find("GameManager").TryGetComponent<GameManager>(out GameManager gm))
             {
-                RestartHook();
                 gm.EndGame();
             }
         }

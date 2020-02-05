@@ -291,14 +291,13 @@ public class Robot : MonoBehaviour
         _repairedPieces++;
         if (IsRepaired())
         {
-            GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(2);
-            GameObject.FindWithTag("LevelManager").GetComponent<Level>().RobotRepaired();
             heart.Play();
-
             //NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW             
             _hook.gameObject.transform.position += Vector3.up * 100;
             GetComponent<Rigidbody2D>().AddForce(100 * Vector3.up, ForceMode2D.Impulse);
             //NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW 
+            GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(2);
+            GameObject.FindWithTag("LevelManager").GetComponent<Level>().RobotRepaired();
         }
         else
         {

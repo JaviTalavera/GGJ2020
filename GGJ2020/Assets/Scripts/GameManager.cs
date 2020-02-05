@@ -68,6 +68,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GameOver();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            EndGame();
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (_gameState == GameStateEnum.PAUSE)
@@ -108,6 +117,7 @@ public class GameManager : MonoBehaviour
         foreach (var r in robots) Destroy(r);
         var pieces = GameObject.FindGameObjectsWithTag("Piece");
         foreach (var p in pieces) Destroy(p);
+        GameObject.FindWithTag("LevelManager").GetComponent<Level>().RestartHook();
         _panelGameOver.gameObject.SetActive(true);
         _panelGame.gameObject.SetActive(false);
     }
@@ -121,6 +131,7 @@ public class GameManager : MonoBehaviour
         foreach (var r in robots) Destroy(r);
         var pieces = GameObject.FindGameObjectsWithTag("Piece");
         foreach (var p in pieces) Destroy(p);
+        GameObject.FindWithTag("LevelManager").GetComponent<Level>().RestartHook();
         var time = _maxMilliseconds - _milliseconds;
         _time = new TimeSpan(0, 0, 0, 0, (int)(time * 1000));
         _txtResult.text = _time.ToString(@"mm\:ss\.fff");
