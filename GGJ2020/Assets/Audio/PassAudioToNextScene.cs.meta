@@ -3,7 +3,15 @@ guid: 0ba9ecb6545986d4a848bc7508e813da
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _audio: {instanceID: 0}
+  - _audioPrincipal: {instanceID: 0}
+  - _error: {instanceID: 0}
+  - _acierto: {instanceID: 0}
+  - _reparado: {instanceID: 0}
+  - _win: {instanceID: 0}
+  - _lose: {instanceID: 0}
+  - _bubbles: {fileID: 8300000, guid: e3fd9794a4e834742ba9e2f3032337c0, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

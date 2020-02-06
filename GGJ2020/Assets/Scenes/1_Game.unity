@@ -418,6 +418,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4170730359914315612, guid: 05d7fa193a9d98d41b9ff107d57420ac,
+        type: 3}
+      propertyPath: _bubbles
+      value: 
+      objectReference: {fileID: 8300000, guid: e3fd9794a4e834742ba9e2f3032337c0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05d7fa193a9d98d41b9ff107d57420ac, type: 3}
 --- !u!114 &97722679 stripped
@@ -1892,6 +1897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particles: {fileID: 550353451}
+  passAudio: {fileID: 1982707254}
 --- !u!1001 &563546799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5057,6 +5063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particles: {fileID: 1485252547}
+  passAudio: {fileID: 1982707254}
 --- !u!1 &1488840685
 GameObject:
   m_ObjectHideFlags: 0
@@ -6107,6 +6114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particles: {fileID: 1948508598}
+  passAudio: {fileID: 1982707254}
 --- !u!1001 &1969096995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6540,6 +6548,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1982707254 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4170730359914315612, guid: 05d7fa193a9d98d41b9ff107d57420ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 77912676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba9ecb6545986d4a848bc7508e813da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2007047894
 GameObject:
   m_ObjectHideFlags: 0
@@ -6793,6 +6813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particles: {fileID: 2032699589}
+  passAudio: {fileID: 1982707254}
 --- !u!4 &2035755577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5855984782353530125, guid: c5592c7994a7172468656acff09dc86e,

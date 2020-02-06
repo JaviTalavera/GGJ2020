@@ -10,6 +10,7 @@ public class PassAudioToNextScene : MonoBehaviour
     public AudioClip _reparado;
     public AudioClip _win;
     public AudioClip _lose;
+    public AudioClip _bubbles;
     public bool _pararMusica;
     // Start is called before the first frame update
 
@@ -27,6 +28,7 @@ public class PassAudioToNextScene : MonoBehaviour
             case 2: _audio.clip = _reparado; break;
             case 3: _audio.clip = _win; _pararMusica = true; break;
             case 4: _audio.clip = _lose; _pararMusica = true; break;
+            case 5: _audio.clip = _bubbles; break;
         }
         if(PassAudioToNextScene.AudioOn)
             _audio.Play();

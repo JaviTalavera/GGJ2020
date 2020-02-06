@@ -5,9 +5,14 @@ using UnityEngine;
 public class ParticlesInteraction : MonoBehaviour
 {
     public ParticleSystem _particles;
+    public PassAudioToNextScene passAudio;
 
     void OnMouseDown()
     {
-        if(_particles) _particles.Play();
+        if (_particles)
+        {
+            _particles.Play();
+            passAudio.Play(5);
+        }
     }
 }
