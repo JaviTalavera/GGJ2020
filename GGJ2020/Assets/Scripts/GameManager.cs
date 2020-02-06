@@ -33,6 +33,12 @@ public class GameManager : MonoBehaviour
     private GameStateEnum _gameState;
     public bool _mainGame = false;
 
+    public void SubtractTime (double t)
+    {
+        _milliseconds -= t;
+        _txtTimer.GetComponent<Animator>().Play("TimeSubtract");
+    }
+
     private void Start()
     {
         if (_mainGame)

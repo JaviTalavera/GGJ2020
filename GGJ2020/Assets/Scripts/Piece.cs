@@ -198,6 +198,7 @@ public class Piece : MonoBehaviour
             this.gameObject.SetActive(false);
             GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(0);
             GameObject.FindWithTag("LevelManager").GetComponent<Level>()?.GetPiecesQueue().Enqueue(this);
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>()?.SubtractTime(5.0f);
         }
     }
 

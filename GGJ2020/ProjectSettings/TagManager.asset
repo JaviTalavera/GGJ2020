@@ -12,6 +12,7 @@ TagManager:
   - Particulas
   - Piece
   - Audio
+  - GameManager
   layers:
   - Default
   - TransparentFX
