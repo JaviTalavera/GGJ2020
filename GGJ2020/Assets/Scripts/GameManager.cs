@@ -6,18 +6,21 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
+    int _rounds = 0;
     public Text _txtCountdown;
     public Text _txtTimer;
     public Text _txtMessage;
     public Text _txtStart;
     public Text _txtResult;
+    public Text _txtRounds;
 
     public Transform _panelPause;
     public Transform _panelGameOver;
     public Transform _panelVictory;
     public Transform _panelGame;
     public Transform _panelControles;
+
+    Level level;
 
     public static bool IsPause = false;
 
@@ -43,6 +46,7 @@ public class GameManager : MonoBehaviour
     {
         if (_mainGame)
             InitializeGame();
+        level = GameObject.FindWithTag("LevelManager").GetComponent<Level>();
     }
 
     public void ShowText(string text)
@@ -115,6 +119,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        level.SetRobots(3);
+        _txtRounds.text = "Rounds: " + _rounds;
+        _rounds = 0;
         GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(4);
         _milliseconds = 0;
         _gameState = GameStateEnum.GAMEOVER;
@@ -130,6 +137,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        _rounds++;        
         GameObject.FindWithTag("Audio").GetComponent<PassAudioToNextScene>().Play(3);
         _gameState = GameStateEnum.POSGAME;
         Time.timeScale = 0;
@@ -137,7 +145,8 @@ public class GameManager : MonoBehaviour
         foreach (var r in robots) Destroy(r);
         var pieces = GameObject.FindGameObjectsWithTag("Piece");
         foreach (var p in pieces) Destroy(p);
-        GameObject.FindWithTag("LevelManager").GetComponent<Level>().RestartHook();
+        level.RestartHook();
+        level.SetRobots(level.GetRobots() + 2);
         var time = _maxMilliseconds - _milliseconds;
         _time = new TimeSpan(0, 0, 0, 0, (int)(time * 1000));
         _txtResult.text = _time.ToString(@"mm\:ss\.fff");

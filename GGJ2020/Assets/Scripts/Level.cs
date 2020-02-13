@@ -22,6 +22,8 @@ public class Level : MonoBehaviour
 
     private int _robotsRepaired = 0;
 
+    public void SetRobots(int n) => _NRobots = n;
+    public int GetRobots() => _NRobots;
     public void RestartHook()
     {
         belt1._generatePieces = false;
